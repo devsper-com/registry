@@ -22,15 +22,9 @@ Triggers on push to `main` touching `registry/**`, or manual dispatch.
 
 Manual dispatch supports a `force` boolean to skip tests.
 
-### `docs-deploy.yml` — Docs Deploy
+### Docs deploy
 
-Triggers on push to `main` touching `website/**`, or manual dispatch.
-
-Single job: build Docusaurus, rsync `website/build/` to EC2 `/opt/devsper-docs/`, verify with curl.
-
-### `docs.yml` — Docs Versioning
-
-Triggers on release published. Creates a versioned docs snapshot via `docusaurus docs:version` and opens a PR to merge it into main.
+Docs site and its deploy live in the **docs** repo. Push to `main` there builds Docusaurus and rsyncs `build/` to EC2 `/opt/devsper-docs/` (see `docs/.github/workflows/deploy-ec2.yml`). Versioning (if used) is also handled in the docs repo.
 
 ## GitHub Configuration
 
@@ -149,6 +143,7 @@ Trigger via GitHub Actions → "Docs Deploy" → Run workflow.
 Or build locally and rsync:
 
 ```bash
-cd website && npm ci && npm run build
-rsync -azP --delete website/build/ ubuntu@<ec2-host>:/opt/devsper-docs/
+# From the docs repo root:
+npm ci && npm run build
+rsync -azP --delete build/ ubuntu@<ec2-host>:/opt/devsper-docs/
 ```

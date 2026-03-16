@@ -1,8 +1,8 @@
-# Registry Deploy: test both components, build arm64 images, push to ECR, deploy stack.
+# Registry Deploy: test both components, build arm64 images (selective), push to ECR, deploy to EC2.
 #
 # Triggers:
-#   - Push to main touching api/** or web/** or this workflow
-#   - Manual dispatch with optional force deploy (skip tests)
+#   - Push to main touching api/** or web/** or this workflow → build & deploy only what changed
+#   - Manual dispatch: choose API only, Web only, or both (default)
 
 name: Registry Deploy
 
@@ -19,12 +19,52 @@ on:
         description: "Force deploy (skip tests)"
         type: boolean
         default: false
+      deploy_api:
+        description: "Deploy API"
+        type: boolean
+        default: true
+      deploy_web:
+        description: "Deploy Web"
+        type: boolean
+        default: true
 
 concurrency:
   group: registry-deploy
   cancel-in-progress: false
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
+  # ── What to build (path filter on push; inputs on manual) ─────────────────
+
+  changes:
+    runs-on: ubuntu-latest
+    outputs:
+      build_api: ${{ steps.set.outputs.build_api }}
+      build_web: ${{ steps.set.outputs.build_web }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: dorny/paths-filter@v3
+        id: paths
+        with:
+          filters: |
+            api: 'api/**'
+            web: 'web/**'
+
+      - id: set
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "build_api=${{ inputs.deploy_api }}" >> $GITHUB_OUTPUT
+            echo "build_web=${{ inputs.deploy_web }}" >> $GITHUB_OUTPUT
+          else
+            echo "build_api=${{ steps.paths.outputs.api }}" >> $GITHUB_OUTPUT
+            echo "build_web=${{ steps.paths.outputs.web }}" >> $GITHUB_OUTPUT
+          fi
+
   # ── Tests ──────────────────────────────────────────────────────────────
 
   test-api:
@@ -74,11 +114,12 @@ jobs:
   # ── Build & Push ───────────────────────────────────────────────────────
 
   build-and-push:
-    needs: [test-api, test-web]
+    needs: [changes, test-api, test-web]
     if: |
       always() &&
       (needs.test-api.result == 'success' || needs.test-api.result == 'skipped') &&
       (needs.test-web.result == 'success' || needs.test-web.result == 'skipped') &&
+      (needs.changes.outputs.build_api == 'true' || needs.changes.outputs.build_web == 'true') &&
       github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
@@ -100,6 +141,7 @@ jobs:
       - uses: docker/setup-buildx-action@v3
 
       - name: Build and push API image
+        if: needs.changes.outputs.build_api == 'true'
         uses: docker/build-push-action@v6
         with:
           context: api
@@ -112,6 +154,7 @@ jobs:
           cache-to: type=gha,mode=max,scope=registry-api
 
       - name: Build and push Web image
+        if: needs.changes.outputs.build_web == 'true'
         uses: docker/build-push-action@v6
         with:
           context: web
@@ -126,7 +169,7 @@ jobs:
   # ── Deploy ─────────────────────────────────────────────────────────────
 
   deploy:
-    needs: build-and-push
+    needs: [build-and-push, changes]
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -143,46 +186,59 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy via EC2 Instance Connect
+        env:
+          DEPLOY_API: ${{ needs.changes.outputs.build_api }}
+          DEPLOY_WEB: ${{ needs.changes.outputs.build_web }}
         run: |
-          # Generate ephemeral SSH key (valid ~60s after push)
           ssh-keygen -t ed25519 -f /tmp/deploy_key -N "" -q
           aws ec2-instance-connect send-ssh-public-key \
             --instance-id "$EC2_INSTANCE_ID" \
             --instance-os-user ubuntu \
             --ssh-public-key file:///tmp/deploy_key.pub
 
-          # Rolling deploy: pull new images, restart web first (faster), then api
+          # Build compose up args from what we deployed
+          UP_ARGS=""
+          if [ "$DEPLOY_API" = "true" ] && [ "$DEPLOY_WEB" = "true" ]; then
+            UP_ARGS="web api"
+          elif [ "$DEPLOY_WEB" = "true" ]; then
+            UP_ARGS="web"
+          elif [ "$DEPLOY_API" = "true" ]; then
+            UP_ARGS="api"
+          fi
+
           ssh -i /tmp/deploy_key -o StrictHostKeyChecking=no ubuntu@"$EC2_HOST" \
             "set -euo pipefail && \
              aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $ECR_REGISTRY && \
              cd /opt/devsper-registry && \
-             docker compose -f docker-compose.prod.yml --env-file .env.prod pull api web && \
-             docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --no-deps web && \
+             docker compose -f docker-compose.prod.yml --env-file .env.prod pull $UP_ARGS && \
+             ([ \"$DEPLOY_WEB\" = true ] && docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --no-deps web || true) && \
              sleep 3 && \
-             docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --no-deps api && \
+             ([ \"$DEPLOY_API\" = true ] && docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --no-deps api || true) && \
              docker image prune -f"
 
           rm -f /tmp/deploy_key /tmp/deploy_key.pub
 
       - name: Smoke test
+        env:
+          DEPLOY_API: ${{ needs.changes.outputs.build_api }}
+          DEPLOY_WEB: ${{ needs.changes.outputs.build_web }}
         run: |
           echo "Waiting for services to stabilize..."
-          sleep 8
+          sleep 15
 
-          # Check API health
-          curl -sf --retry 3 --retry-delay 5 "https://registry.devsper.com/health" || \
-            { echo "FAIL: /health"; exit 1; }
+          BASE="https://registry.devsper.com"
+          CURL_OPTS="-sf --retry 5 --retry-delay 8 --retry-all-errors"
 
-          # Check JWKS endpoint
-          curl -sf --retry 3 --retry-delay 5 "https://registry.devsper.com/auth/jwks" || \
-            { echo "FAIL: /auth/jwks"; exit 1; }
+          if [ "$DEPLOY_API" = "true" ]; then
+            echo "Checking API..."
+            curl $CURL_OPTS "$BASE/health" || { echo "FAIL: /health"; exit 1; }
+            curl $CURL_OPTS "$BASE/auth/jwks" || { echo "FAIL: /auth/jwks"; exit 1; }
+            curl $CURL_OPTS "$BASE/api/v1/packages" || { echo "FAIL: /api/v1/packages"; exit 1; }
+          fi
 
-          # Check web frontend
-          curl -sf --retry 3 --retry-delay 5 "https://registry.devsper.com/" || \
-            { echo "FAIL: / (web)"; exit 1; }
-
-          # Check packages API
-          curl -sf --retry 3 --retry-delay 5 "https://registry.devsper.com/api/v1/packages" || \
-            { echo "FAIL: /api/v1/packages"; exit 1; }
+          if [ "$DEPLOY_WEB" = "true" ]; then
+            echo "Checking web..."
+            curl $CURL_OPTS "$BASE/" || { echo "FAIL: / (web)"; exit 1; }
+          fi
 
           echo "All smoke tests passed"

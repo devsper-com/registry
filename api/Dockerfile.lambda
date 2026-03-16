@@ -1,8 +1,10 @@
 # Lambda-compatible Dockerfile for Go API
 # Uses AWS Lambda Web Adapter to proxy Lambda invoke → HTTP on :8080
+# Builder runs on host arch (e.g. amd64 on CI); we cross-compile Go for arm64.
 
-# Stage 1: builder
-FROM golang:1.24-alpine AS builder
+ARG BUILDPLATFORM
+# Stage 1: builder (native platform so no exec format error on amd64 runners)
+FROM --platform=$BUILDPLATFORM golang:1.24-alpine AS builder
 RUN apk add --no-cache ca-certificates git
 WORKDIR /app
 COPY go.mod go.sum ./
