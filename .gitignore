@@ -1,0 +1,42 @@
+# Environment
+.env
+.env.*
+!.env.example
+!.env.prod.example
+
+# Go
+api/bin/
+api/registry
+
+# Node / Web
+node_modules/
+web/dist/
+web/tsconfig.node.tsbuildinfo
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+tfplan
+*.tfplan
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Docker
+docker-compose.override.yml
+
+# Python (test-plugin)
+__pycache__/
+*.pyc
+*.egg-info/
+dist/
+build/
