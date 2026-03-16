@@ -12,18 +12,19 @@ export function Header() {
   const displayName = me?.username ?? session?.user?.name ?? session?.user?.email ?? "Account";
 
   return (
-    <header className="sticky top-0 z-50 bg-ds-bg/95 backdrop-blur border-b border-ds-border min-h-[48px] flex items-center px-ds-lg">
+    <header className="sticky top-0 z-50 bg-ds-bg/95 backdrop-blur-sm border-b border-white/5 min-h-[48px] flex items-center px-ds-lg">
       <div className="w-full max-w-6xl mx-auto flex items-center justify-between gap-4">
         <Link
           to="/"
-          className="font-mono text-xs tracking-widest uppercase text-ds-text hover:opacity-90 transition-opacity"
+          className="flex items-center gap-3 font-bold text-xl tracking-tight text-ds-text hover:text-orchid transition-colors"
         >
-          Devsper Registry
+          <img src="/branding/logo.svg" alt="Devsper" className="w-8 h-8" />
+          <span>Devsper Registry</span>
         </Link>
         
         <Link 
           to="/packages" 
-          className="ml-4 font-sans text-sm font-medium text-ds-muted hover:text-ds-text transition-colors"
+          className="ml-4 font-sans text-sm font-medium text-ds-muted hover:text-orchid transition-colors"
         >
           Packages
         </Link>

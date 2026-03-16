@@ -2,17 +2,18 @@
 @config "../tailwind.config.js";
 
 :root {
-  --ds-bg: #0a0a0a;
-  --ds-surface: #111111;
-  --ds-border: #1f1f1f;
-  --ds-muted: #666666;
-  --ds-text: #fafafa;
-  --ds-text-passive: #e8e8e8;
-  --ds-accent: #e5e5e5;
-  --ds-violet: #8A2BE2;
-  --ds-lilac: #E0B0FF;
-  --ds-font-sans: "Space Grotesk", system-ui, -apple-system, sans-serif;
-  --ds-font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --ds-bg: #020204;
+  --ds-surface: #0a0a0c;
+  --ds-border: rgba(255, 255, 255, 0.08);
+  --ds-muted: #9ca3af;
+  --ds-text: #e5e5e7;
+  --ds-text-passive: #d1d5db;
+  --ds-accent: #E0AAFF;
+  --ds-violet: #E0AAFF;
+  --ds-lilac: #E0AAFF;
+  --ds-cyan: #B9F2FF;
+  --ds-font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --ds-font-mono: "Geist Mono", ui-monospace, monospace;
 }
 
 html {
@@ -21,8 +22,9 @@ html {
 
 body {
   background-color: var(--ds-bg);
-  background-image: radial-gradient(ellipse at top, rgba(138, 43, 226, 0.12) 0%, transparent 40%),
-    radial-gradient(ellipse at bottom left, rgba(88, 28, 135, 0.08) 0%, transparent 40%);
+  background-image: radial-gradient(circle at 20% 20%, rgba(224, 170, 255, 0.05), transparent 24%),
+    radial-gradient(circle at 78% 8%, rgba(185, 242, 255, 0.04), transparent 22%),
+    radial-gradient(circle at 46% 82%, rgba(224, 170, 255, 0.035), transparent 26%);
   background-attachment: fixed;
   color: var(--ds-text);
   font-family: var(--ds-font-sans);
@@ -36,7 +38,7 @@ body {
 .prose-registry ul { @apply list-disc pl-6 mb-ds-md text-ds-text-passive; }
 .prose-registry ol { @apply list-decimal pl-6 mb-ds-md text-ds-text-passive; }
 .prose-registry a { @apply text-ds-text underline underline-offset-2 hover:text-ds-accent transition-opacity; }
-.prose-registry code { @apply bg-ds-code-bg border border-ds-border px-1 py-0.5 font-mono text-sm text-ds-violet rounded-none; }
+.prose-registry code { @apply bg-ds-code-bg border border-ds-border-hex px-1 py-0.5 font-mono text-sm text-cyan rounded-none; }
 .prose-registry pre { @apply bg-ds-code-bg border border-ds-border p-ds-md overflow-x-auto text-sm font-mono; }
 .prose-registry pre code { @apply p-0 border-0 bg-transparent text-ds-text-passive; }
 .prose-registry table { @apply border border-ds-border border-collapse text-sm; }

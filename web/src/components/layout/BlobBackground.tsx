@@ -22,7 +22,7 @@ export function BlobBackground() {
           </filter>
         </defs>
         <g filter="url(#ds-blob-blur)">
-          <circle cx="15%" cy="20%" r="220" fill="rgba(138, 43, 226, 0.15)">
+          <circle cx="15%" cy="20%" r="220" fill="rgba(224, 170, 255, 0.12)">
             <animate
               attributeName="cx"
               values="15%;30%;15%"
@@ -36,7 +36,7 @@ export function BlobBackground() {
               repeatCount="indefinite"
             />
           </circle>
-          <circle cx="80%" cy="70%" r="180" fill="rgba(224, 176, 255, 0.08)">
+          <circle cx="80%" cy="70%" r="180" fill="rgba(185, 242, 255, 0.06)">
             <animate
               attributeName="cx"
               values="80%;65%;80%"
@@ -50,7 +50,7 @@ export function BlobBackground() {
               repeatCount="indefinite"
             />
           </circle>
-          <circle cx="50%" cy="85%" r="160" fill="rgba(88, 28, 135, 0.12)">
+          <circle cx="50%" cy="85%" r="160" fill="rgba(224, 170, 255, 0.08)">
             <animate
               attributeName="cx"
               values="50%;65%;50%"
