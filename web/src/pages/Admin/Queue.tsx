@@ -19,27 +19,27 @@ export function AdminQueue() {
 
   return (
     <div>
-      <h1 className="font-sans text-2xl font-semibold text-hm-text mb-6">Verification queue</h1>
+      <h1 className="font-sans text-2xl font-semibold text-ds-text mb-6">Verification queue</h1>
       {isLoading ? (
-        <p className="text-hm-muted">Loading…</p>
+        <p className="text-ds-muted">Loading…</p>
       ) : (
-        <div className="border border-hm-border overflow-x-auto">
+        <div className="border border-ds-border overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-hm-border bg-hm-surface">
-                <th className="text-left px-4 py-2 font-semibold text-hm-text">Package</th>
-                <th className="text-left px-4 py-2 font-semibold text-hm-text">Version</th>
-                <th className="text-left px-4 py-2 font-semibold text-hm-text">Uploaded</th>
-                <th className="text-left px-4 py-2 font-semibold text-hm-text">Status</th>
-                <th className="text-left px-4 py-2 font-semibold text-hm-text">Actions</th>
+              <tr className="border-b border-ds-border bg-ds-surface">
+                <th className="text-left px-4 py-2 font-semibold text-ds-text">Package</th>
+                <th className="text-left px-4 py-2 font-semibold text-ds-text">Version</th>
+                <th className="text-left px-4 py-2 font-semibold text-ds-text">Uploaded</th>
+                <th className="text-left px-4 py-2 font-semibold text-ds-text">Status</th>
+                <th className="text-left px-4 py-2 font-semibold text-ds-text">Actions</th>
               </tr>
             </thead>
             <tbody>
               {(list ?? []).map((row) => (
-                <tr key={row.id} className="border-b border-hm-border last:border-0">
-                  <td className="px-4 py-2 font-mono text-hm-text">{row.package_name}</td>
-                  <td className="px-4 py-2 font-mono text-hm-text-passive">{row.version}</td>
-                  <td className="px-4 py-2 text-hm-muted">
+                <tr key={row.id} className="border-b border-ds-border last:border-0">
+                  <td className="px-4 py-2 font-mono text-ds-text">{row.package_name}</td>
+                  <td className="px-4 py-2 font-mono text-ds-text-passive">{row.version}</td>
+                  <td className="px-4 py-2 text-ds-muted">
                     {new Date(row.uploaded_at).toLocaleString()}
                   </td>
                   <td className="px-4 py-2">

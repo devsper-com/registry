@@ -54,24 +54,24 @@ export function Home() {
 
   return (
     <div className="max-w-4xl">
-      <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-hm-muted mb-10">
+      <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-ds-muted mb-10">
         Devsper Plugin Registry
       </p>
-      <h1 className="font-sans text-3xl sm:text-4xl font-bold text-hm-text leading-tight tracking-tight mb-2">
+      <h1 className="font-sans text-3xl sm:text-4xl font-bold text-ds-text leading-tight tracking-tight mb-2">
         devsper plugin registry
       </h1>
-      <p className="text-hm-muted mb-6 max-w-prose">
+      <p className="text-ds-muted mb-6 max-w-prose">
         Discover, install, and publish devsper plugins.
       </p>
 
-      <div className="border-l-4 border-l-hm-amber bg-hm-code-bg border border-hm-border flex items-center justify-between gap-4 px-4 py-3 font-mono text-sm text-hm-text mb-10">
+      <div className="border-l-4 border-l-ds-violet bg-ds-code-bg border border-ds-border flex items-center justify-between gap-4 px-4 py-3 font-mono text-sm text-ds-text mb-10">
         <code className="break-all flex-1 min-w-0">
           pip install --index-url {REGISTRY_URL} {"{plugin}"}
         </code>
         <CopyButton text={DEFAULT_CMD} />
       </div>
 
-      <div className="flex flex-wrap gap-8 font-mono text-sm text-hm-muted mb-12">
+      <div className="flex flex-wrap gap-8 font-mono text-sm text-ds-muted mb-12">
         <span>{countPkg.toLocaleString()} packages</span>
         <span>{countDl.toLocaleString()} downloads</span>
         <span>{countVerified.toLocaleString()} verified</span>
@@ -79,7 +79,7 @@ export function Home() {
 
       {displayFeatured.length > 0 && (
         <section className="mb-12">
-          <h2 className="font-sans text-lg font-semibold text-hm-text mb-4">Featured packages</h2>
+          <h2 className="font-sans text-lg font-semibold text-ds-text mb-4">Featured packages</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {displayFeatured.map((pkg) => (
               <PackageCard key={pkg.id} pkg={pkg} />
@@ -90,13 +90,13 @@ export function Home() {
 
       {recent.length > 0 && (
         <section>
-          <h2 className="font-sans text-lg font-semibold text-hm-text mb-4">Recent packages</h2>
+          <h2 className="font-sans text-lg font-semibold text-ds-text mb-4">Recent packages</h2>
           <ul className="space-y-2">
             {recent.map((pkg) => (
               <li key={pkg.id}>
                 <Link
                   to={`/packages/${pkg.name}`}
-                  className="text-hm-text hover:underline font-sans"
+                  className="text-ds-text hover:underline font-sans"
                 >
                   {pkg.name}
                 </Link>

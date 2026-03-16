@@ -18,9 +18,9 @@ export function OrgPackages() {
     <div className="flex gap-8">
       <Sidebar variant="org" />
       <div className="flex-1 min-w-0">
-        <h1 className="font-sans text-2xl font-semibold text-hm-text mb-6">Packages</h1>
+        <h1 className="font-sans text-2xl font-semibold text-ds-text mb-6">Packages</h1>
         {isLoading ? (
-          <p className="text-hm-muted">Loading…</p>
+          <p className="text-ds-muted">Loading…</p>
         ) : (packages ?? []).length === 0 ? (
           <EmptyState title="No packages" description="This org has no packages yet." />
         ) : (

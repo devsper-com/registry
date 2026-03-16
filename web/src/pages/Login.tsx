@@ -93,26 +93,26 @@ export function Login() {
       transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <motion.div variants={container} initial="hidden" animate="show">
-        <motion.h1 variants={item} className="font-sans text-2xl font-semibold text-hm-text mb-6">Log in</motion.h1>
+        <motion.h1 variants={item} className="font-sans text-2xl font-semibold text-ds-text mb-6">Log in</motion.h1>
         {error && <motion.p variants={item} className="mb-4 text-sm text-red-400">{error}</motion.p>}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" autoComplete="off">
         <motion.div variants={item}>
-          <label className="block font-mono text-xs text-hm-muted mb-1">Email</label>
+          <label className="block font-mono text-xs text-ds-muted mb-1">Email</label>
           <input
             {...register("email")}
             type="email"
             autoComplete="email"
-            className="w-full bg-hm-surface border border-hm-border px-3 py-2 text-hm-text focus:outline-none focus:border-hm-muted transition-colors"
+            className="w-full bg-ds-surface border border-ds-border px-3 py-2 text-ds-text focus:outline-none focus:border-ds-muted transition-colors"
           />
           {errors.email && <p className="mt-1 text-sm text-red-400">{errors.email.message}</p>}
         </motion.div>
         <motion.div variants={item}>
-          <label className="block font-mono text-xs text-hm-muted mb-1">Password</label>
+          <label className="block font-mono text-xs text-ds-muted mb-1">Password</label>
           <input
             {...register("password")}
             type="password"
             autoComplete="current-password"
-            className="w-full bg-hm-surface border border-hm-border px-3 py-2 text-hm-text focus:outline-none focus:border-hm-muted transition-colors"
+            className="w-full bg-ds-surface border border-ds-border px-3 py-2 text-ds-text focus:outline-none focus:border-ds-muted transition-colors"
           />
           {errors.password && <p className="mt-1 text-sm text-red-400">{errors.password.message}</p>}
         </motion.div>
@@ -150,8 +150,8 @@ export function Login() {
         </Button>
         </motion.div>
       </div>
-      <motion.p variants={item} className="mt-6 text-sm text-hm-muted">
-        Don&apos;t have an account? <Link to="/register" className="text-hm-text hover:underline">Register</Link>
+      <motion.p variants={item} className="mt-6 text-sm text-ds-muted">
+        Don&apos;t have an account? <Link to="/register" className="text-ds-text hover:underline">Register</Link>
       </motion.p>
       </motion.div>
     </motion.div>

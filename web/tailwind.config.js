@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        hm: {
+        ds: {
           bg: "#0a0a0a",
           surface: "#111111",
           border: "#1f1f1f",
@@ -14,26 +14,27 @@ export default {
           text: "#fafafa",
           "text-passive": "#e8e8e8",
           accent: "#e5e5e5",
-          amber: "#F5A623",
+          violet: "#8A2BE2",
+          lilac: "#E0B0FF",
           "code-bg": "#0f0f0f",
           "terminal-bg": "#0d0d0d",
           "terminal-header": "#161616",
         },
       },
       fontFamily: {
-        sans: ['"DM Sans"', "Geist", "system-ui", "-apple-system", "sans-serif"],
-        mono: ['"JetBrains Mono"', "Geist Mono", "ui-monospace", "monospace"],
+        sans: ['"Space Grotesk"', "system-ui", "-apple-system", "sans-serif"],
+        mono: ['"JetBrains Mono"', "ui-monospace", "monospace"],
       },
       maxWidth: {
         prose: "65ch",
         content: "80ch",
       },
       spacing: {
-        "hm-xs": "0.25rem",
-        "hm-sm": "0.5rem",
-        "hm-md": "0.75rem",
-        "hm-lg": "1rem",
-        "hm-xl": "1.25rem",
+        "ds-xs": "0.25rem",
+        "ds-sm": "0.5rem",
+        "ds-md": "0.75rem",
+        "ds-lg": "1rem",
+        "ds-xl": "1.25rem",
       },
       transitionDuration: { DEFAULT: "100ms" },
     },

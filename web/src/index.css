@@ -2,16 +2,17 @@
 @config "../tailwind.config.js";
 
 :root {
-  --hm-bg: #0a0a0a;
-  --hm-surface: #111111;
-  --hm-border: #1f1f1f;
-  --hm-muted: #666666;
-  --hm-text: #fafafa;
-  --hm-text-passive: #e8e8e8;
-  --hm-accent: #e5e5e5;
-  --hm-amber: #f5a623;
-  --hm-font-sans: "DM Sans", "Geist", system-ui, -apple-system, sans-serif;
-  --hm-font-mono: "JetBrains Mono", "Geist Mono", ui-monospace, monospace;
+  --ds-bg: #0a0a0a;
+  --ds-surface: #111111;
+  --ds-border: #1f1f1f;
+  --ds-muted: #666666;
+  --ds-text: #fafafa;
+  --ds-text-passive: #e8e8e8;
+  --ds-accent: #e5e5e5;
+  --ds-violet: #8A2BE2;
+  --ds-lilac: #E0B0FF;
+  --ds-font-sans: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --ds-font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 html {
@@ -19,28 +20,28 @@ html {
 }
 
 body {
-  background-color: var(--hm-bg);
-  background-image: radial-gradient(ellipse at top, rgba(30, 25, 60, 0.25) 0%, transparent 40%),
-    radial-gradient(ellipse at bottom left, rgba(20, 30, 50, 0.15) 0%, transparent 40%);
+  background-color: var(--ds-bg);
+  background-image: radial-gradient(ellipse at top, rgba(138, 43, 226, 0.12) 0%, transparent 40%),
+    radial-gradient(ellipse at bottom left, rgba(88, 28, 135, 0.08) 0%, transparent 40%);
   background-attachment: fixed;
-  color: var(--hm-text);
-  font-family: var(--hm-font-sans);
+  color: var(--ds-text);
+  font-family: var(--ds-font-sans);
 }
 
 /* Prose / markdown (README) */
-.prose-registry h1 { @apply text-xl font-semibold mt-0 mb-hm-md; }
-.prose-registry h2 { @apply text-lg font-semibold mt-hm-lg mb-hm-sm border-b border-hm-border pb-hm-xs; }
-.prose-registry h3 { @apply text-base font-semibold mt-hm-md mb-hm-xs; }
-.prose-registry p { @apply text-hm-text-passive mb-hm-md leading-relaxed; }
-.prose-registry ul { @apply list-disc pl-6 mb-hm-md text-hm-text-passive; }
-.prose-registry ol { @apply list-decimal pl-6 mb-hm-md text-hm-text-passive; }
-.prose-registry a { @apply text-hm-text underline underline-offset-2 hover:text-hm-accent transition-opacity; }
-.prose-registry code { @apply bg-hm-code-bg border border-hm-border px-1 py-0.5 font-mono text-sm text-hm-amber rounded-none; }
-.prose-registry pre { @apply bg-hm-code-bg border border-hm-border p-hm-md overflow-x-auto text-sm font-mono; }
-.prose-registry pre code { @apply p-0 border-0 bg-transparent text-hm-text-passive; }
-.prose-registry table { @apply border border-hm-border border-collapse text-sm; }
-.prose-registry th, .prose-registry td { @apply border border-hm-border px-hm-md py-hm-sm text-left; }
-.prose-registry th { @apply font-semibold text-hm-text bg-hm-surface; }
+.prose-registry h1 { @apply text-xl font-semibold mt-0 mb-ds-md; }
+.prose-registry h2 { @apply text-lg font-semibold mt-ds-lg mb-ds-sm border-b border-ds-border pb-ds-xs; }
+.prose-registry h3 { @apply text-base font-semibold mt-ds-md mb-ds-xs; }
+.prose-registry p { @apply text-ds-text-passive mb-ds-md leading-relaxed; }
+.prose-registry ul { @apply list-disc pl-6 mb-ds-md text-ds-text-passive; }
+.prose-registry ol { @apply list-decimal pl-6 mb-ds-md text-ds-text-passive; }
+.prose-registry a { @apply text-ds-text underline underline-offset-2 hover:text-ds-accent transition-opacity; }
+.prose-registry code { @apply bg-ds-code-bg border border-ds-border px-1 py-0.5 font-mono text-sm text-ds-violet rounded-none; }
+.prose-registry pre { @apply bg-ds-code-bg border border-ds-border p-ds-md overflow-x-auto text-sm font-mono; }
+.prose-registry pre code { @apply p-0 border-0 bg-transparent text-ds-text-passive; }
+.prose-registry table { @apply border border-ds-border border-collapse text-sm; }
+.prose-registry th, .prose-registry td { @apply border border-ds-border px-ds-md py-ds-sm text-left; }
+.prose-registry th { @apply font-semibold text-ds-text bg-ds-surface; }
 
 @keyframes shimmer {
   0% { background-position: 200% 0; }

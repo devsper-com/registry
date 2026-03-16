@@ -2583,7 +2583,7 @@ export declare const auth: import("better-auth").Auth<{
                 inviterId: string;
                 expiresAt: Date;
                 createdAt: Date;
-                teamId?: string | undefined | undefined;
+                teamId?: string | undefined;
             };
             Member: {
                 id: string;
@@ -2591,7 +2591,7 @@ export declare const auth: import("better-auth").Auth<{
                 role: "admin" | "member" | "owner";
                 createdAt: Date;
                 userId: string;
-                teamId?: string | undefined | undefined;
+                teamId?: string | undefined;
                 user: {
                     id: string;
                     email: string;
@@ -2619,7 +2619,7 @@ export declare const auth: import("better-auth").Auth<{
                     role: "admin" | "member" | "owner";
                     createdAt: Date;
                     userId: string;
-                    teamId?: string | undefined | undefined;
+                    teamId?: string | undefined;
                     user: {
                         id: string;
                         email: string;
@@ -2636,7 +2636,7 @@ export declare const auth: import("better-auth").Auth<{
                     inviterId: string;
                     expiresAt: Date;
                     createdAt: Date;
-                    teamId?: string | undefined | undefined;
+                    teamId?: string | undefined;
                 }[];
                 teams: {
                     id: string;

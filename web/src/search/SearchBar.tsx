@@ -47,7 +47,7 @@ export function SearchBar({ inline = false, onSelect }: SearchBarProps) {
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search packages…"
           className={clsx(
-            "w-full bg-hm-surface border border-hm-border px-3 py-2 font-sans text-sm text-hm-text placeholder:text-hm-muted focus:outline-none focus:border-hm-muted",
+            "w-full bg-ds-surface border border-ds-border px-3 py-2 font-sans text-sm text-ds-text placeholder:text-ds-muted focus:outline-none focus:border-ds-muted",
             inline && "pr-8"
           )}
           aria-label="Search packages"
@@ -57,13 +57,13 @@ export function SearchBar({ inline = false, onSelect }: SearchBarProps) {
       </form>
       {showDropdown && (
         <div
-          className="absolute top-full left-0 right-0 mt-1 bg-hm-surface border border-hm-border shadow-lg max-h-72 overflow-y-auto z-50"
+          className="absolute top-full left-0 right-0 mt-1 bg-ds-surface border border-ds-border shadow-lg max-h-72 overflow-y-auto z-50"
           role="listbox"
         >
           {isFetching ? (
-            <div className="px-4 py-3 text-sm text-hm-muted">Searching…</div>
+            <div className="px-4 py-3 text-sm text-ds-muted">Searching…</div>
           ) : results.length === 0 ? (
-            <div className="px-4 py-3 text-sm text-hm-muted">No packages found.</div>
+            <div className="px-4 py-3 text-sm text-ds-muted">No packages found.</div>
           ) : (
             results.slice(0, 8).map((pkg) => (
               <a
@@ -74,7 +74,7 @@ export function SearchBar({ inline = false, onSelect }: SearchBarProps) {
                   navigate(`/packages/${pkg.name}`);
                   onSelect?.();
                 }}
-                className="block px-4 py-2 hover:bg-hm-border/50 text-hm-text font-sans text-sm border-b border-hm-border last:border-0"
+                className="block px-4 py-2 hover:bg-ds-border/50 text-ds-text font-sans text-sm border-b border-ds-border last:border-0"
                 role="option"
               >
                 {pkg.name}

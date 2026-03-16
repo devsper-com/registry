@@ -54,10 +54,10 @@ export function Register() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <p className="text-hm-text mb-4">
+        <p className="text-ds-text mb-4">
           Check your email to verify your account before logging in.
         </p>
-        <Link to="/login" className="text-hm-muted hover:underline text-sm">Back to login</Link>
+        <Link to="/login" className="text-ds-muted hover:underline text-sm">Back to login</Link>
       </motion.div>
     );
   }
@@ -70,46 +70,46 @@ export function Register() {
       transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <motion.div variants={container} initial="hidden" animate="show">
-      <motion.h1 variants={item} className="font-sans text-2xl font-semibold text-hm-text mb-6">Register</motion.h1>
+      <motion.h1 variants={item} className="font-sans text-2xl font-semibold text-ds-text mb-6">Register</motion.h1>
       {error && <motion.p variants={item} className="mb-4 text-sm text-red-400">{error}</motion.p>}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" autoComplete="off">
         <motion.div variants={item}>
-          <label className="block font-mono text-xs text-hm-muted mb-1">Email</label>
+          <label className="block font-mono text-xs text-ds-muted mb-1">Email</label>
           <input
             {...register("email")}
             type="email"
             autoComplete="email"
-            className="w-full bg-hm-surface border border-hm-border px-3 py-2 text-hm-text focus:outline-none focus:border-hm-muted transition-colors"
+            className="w-full bg-ds-surface border border-ds-border px-3 py-2 text-ds-text focus:outline-none focus:border-ds-muted transition-colors"
           />
           {errors.email && <p className="mt-1 text-sm text-red-400">{errors.email.message}</p>}
         </motion.div>
         <motion.div variants={item}>
-          <label className="block font-mono text-xs text-hm-muted mb-1">Username</label>
+          <label className="block font-mono text-xs text-ds-muted mb-1">Username</label>
           <input
             {...register("username")}
             autoComplete="username"
-            className="w-full bg-hm-surface border border-hm-border px-3 py-2 text-hm-text focus:outline-none focus:border-hm-muted transition-colors"
+            className="w-full bg-ds-surface border border-ds-border px-3 py-2 text-ds-text focus:outline-none focus:border-ds-muted transition-colors"
           />
           {errors.username && <p className="mt-1 text-sm text-red-400">{errors.username.message}</p>}
         </motion.div>
         <motion.div variants={item}>
-          <label className="block font-mono text-xs text-hm-muted mb-1">Password</label>
+          <label className="block font-mono text-xs text-ds-muted mb-1">Password</label>
           <input
             {...register("password")}
             type="password"
             autoComplete="new-password"
-            className="w-full bg-hm-surface border border-hm-border px-3 py-2 text-hm-text focus:outline-none focus:border-hm-muted transition-colors"
+            className="w-full bg-ds-surface border border-ds-border px-3 py-2 text-ds-text focus:outline-none focus:border-ds-muted transition-colors"
           />
-          <p className="mt-1 text-xs text-hm-muted">12+ characters, uppercase, number, special character</p>
+          <p className="mt-1 text-xs text-ds-muted">12+ characters, uppercase, number, special character</p>
           {errors.password && <p className="mt-1 text-sm text-red-400">{errors.password.message}</p>}
         </motion.div>
         <motion.div variants={item}>
-          <label className="block font-mono text-xs text-hm-muted mb-1">Confirm password</label>
+          <label className="block font-mono text-xs text-ds-muted mb-1">Confirm password</label>
           <input
             {...register("confirm")}
             type="password"
             autoComplete="new-password"
-            className="w-full bg-hm-surface border border-hm-border px-3 py-2 text-hm-text focus:outline-none focus:border-hm-muted transition-colors"
+            className="w-full bg-ds-surface border border-ds-border px-3 py-2 text-ds-text focus:outline-none focus:border-ds-muted transition-colors"
           />
           {errors.confirm && <p className="mt-1 text-sm text-red-400">{errors.confirm.message}</p>}
         </motion.div>
@@ -119,8 +119,8 @@ export function Register() {
         </Button>
         </motion.div>
       </form>
-      <motion.p variants={item} className="mt-6 text-sm text-hm-muted">
-        Already have an account? <Link to="/login" className="text-hm-text hover:underline">Log in</Link>
+      <motion.p variants={item} className="mt-6 text-sm text-ds-muted">
+        Already have an account? <Link to="/login" className="text-ds-text hover:underline">Log in</Link>
       </motion.p>
       </motion.div>
     </motion.div>

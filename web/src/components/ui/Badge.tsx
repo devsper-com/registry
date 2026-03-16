@@ -3,14 +3,14 @@ import { clsx } from "clsx";
 type BadgeVariant = "verified" | "trusted" | "yanked" | "pending" | "passed" | "failed" | "running" | "default";
 
 const variantClasses: Record<BadgeVariant, string> = {
-  verified: "bg-amber-500/20 text-amber-400 border-amber-500/40",
+  verified: "bg-violet-500/20 text-violet-400 border-violet-500/40",
   trusted: "bg-green-500/20 text-green-400 border-green-500/40",
   yanked: "bg-red-500/20 text-red-400 border-red-500/40",
-  pending: "bg-hm-muted/20 text-hm-muted border-hm-border",
+  pending: "bg-ds-muted/20 text-ds-muted border-ds-border",
   passed: "bg-green-500/20 text-green-400 border-green-500/40",
   failed: "bg-red-500/20 text-red-400 border-red-500/40",
-  running: "bg-amber-500/20 text-amber-400 border-amber-500/40",
-  default: "bg-hm-surface text-hm-text-passive border-hm-border",
+  running: "bg-violet-500/20 text-violet-400 border-violet-500/40",
+  default: "bg-ds-surface text-ds-text-passive border-ds-border",
 };
 
 interface BadgeProps {

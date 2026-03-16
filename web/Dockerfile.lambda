@@ -1,0 +1,45 @@
+# Lambda-compatible Dockerfile for Bun/Express web server
+# Uses AWS Lambda Web Adapter to proxy Lambda invoke → HTTP on :3000
+# Non-AWS base images work because the adapter bundles the Runtime Interface Client.
+
+# Stage 1: install deps + build React SPA
+FROM oven/bun:1-alpine AS builder
+WORKDIR /app
+COPY package.json bun.lock* ./
+RUN bun install --frozen-lockfile
+COPY . .
+ARG VITE_API_BASE_URL=https://registry.devsper.com
+ARG VITE_REGISTRY_URL=https://registry.devsper.com/simple/
+ARG VITE_GOOGLE_CLIENT_ID=626038268340-sb65m8tj3o0bonuf1nn7m5k8dmqrfe6g.apps.googleusercontent.com
+ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
+ENV VITE_REGISTRY_URL=$VITE_REGISTRY_URL
+ENV VITE_GOOGLE_CLIENT_ID=$VITE_GOOGLE_CLIENT_ID
+RUN bun run build
+
+# Stage 2: production deps only
+FROM oven/bun:1-alpine AS deps
+WORKDIR /app
+COPY package.json bun.lock* ./
+RUN bun install --frozen-lockfile --production
+
+# Stage 3: Lambda runtime with web adapter
+FROM oven/bun:1-debian
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates && rm -rf /var/lib/apt/lists/*
+
+# Install Lambda Web Adapter (includes Runtime Interface Client for non-AWS base images)
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:1.0.0-rc1 /lambda-adapter /opt/extensions/lambda-adapter
+
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY package.json ./
+COPY server/ ./server/
+COPY --from=builder /app/dist ./dist
+
+# Lambda Web Adapter config
+ENV PORT=3000
+ENV AWS_LWA_PORT=3000
+ENV AWS_LWA_READINESS_CHECK_PATH=/
+ENV AWS_LWA_READINESS_CHECK_HEALTHY_STATUS=100-499
+
+# The web adapter handles Lambda ↔ HTTP bridging
+ENTRYPOINT ["bun", "run", "server/index.ts"]

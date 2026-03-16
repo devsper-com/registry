@@ -43,13 +43,13 @@ export function ConfirmDialog({
       onClick={() => setOpen(false)}
     >
       <div
-        className="w-full max-w-md bg-hm-surface border border-hm-border p-6 shadow-lg"
+        className="w-full max-w-md bg-ds-surface border border-ds-border p-6 shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 id="confirm-title" className="font-sans text-lg font-semibold text-hm-text">
+        <h2 id="confirm-title" className="font-sans text-lg font-semibold text-ds-text">
           {title}
         </h2>
-        {description && <p className="mt-1 text-sm text-hm-muted">{description}</p>}
+        {description && <p className="mt-1 text-sm text-ds-muted">{description}</p>}
         <div className="mt-6 flex justify-end gap-2">
           <Button variant="outline" onClick={() => setOpen(false)}>
             {cancelLabel}

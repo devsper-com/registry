@@ -16,14 +16,14 @@ export function OrgIndex() {
     <div className="flex gap-8">
       <Sidebar variant="org" />
       <div className="flex-1 min-w-0">
-        <h1 className="font-sans text-2xl font-semibold text-hm-text mb-2">
+        <h1 className="font-sans text-2xl font-semibold text-ds-text mb-2">
           {org?.display_name ?? slug}
         </h1>
-        <p className="text-hm-muted mb-6">Organization overview</p>
+        <p className="text-ds-muted mb-6">Organization overview</p>
         <div className="flex flex-wrap gap-4">
-          <Link to={`/org/${slug}/members`} className="text-hm-text hover:underline">Members</Link>
-          <Link to={`/org/${slug}/sso`} className="text-hm-text hover:underline">SSO</Link>
-          <Link to={`/org/${slug}/packages`} className="text-hm-text hover:underline">Packages</Link>
+          <Link to={`/org/${slug}/members`} className="text-ds-text hover:underline">Members</Link>
+          <Link to={`/org/${slug}/sso`} className="text-ds-text hover:underline">SSO</Link>
+          <Link to={`/org/${slug}/packages`} className="text-ds-text hover:underline">Packages</Link>
         </div>
       </div>
     </div>

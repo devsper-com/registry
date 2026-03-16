@@ -7,11 +7,11 @@ export function Search() {
 
   return (
     <div className="max-w-4xl">
-      <h1 className="font-sans text-2xl font-semibold text-hm-text mb-2">
+      <h1 className="font-sans text-2xl font-semibold text-ds-text mb-2">
         Search packages
       </h1>
       {q && (
-        <p className="text-hm-muted text-sm mb-6">
+        <p className="text-ds-muted text-sm mb-6">
           Results for &quot;{q}&quot;
         </p>
       )}

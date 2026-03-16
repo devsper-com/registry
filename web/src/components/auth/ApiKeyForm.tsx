@@ -46,16 +46,16 @@ export function ApiKeyForm({ onSubmit, onCancel }: ApiKeyFormProps) {
   return (
     <form onSubmit={handleSubmit((data) => onSubmit(data as unknown as FormData))} className="p-4 space-y-4">
       <div>
-        <label className="block font-mono text-xs text-hm-muted mb-1">Name</label>
+        <label className="block font-mono text-xs text-ds-muted mb-1">Name</label>
         <input
           {...register("name")}
-          className="w-full bg-hm-surface border border-hm-border px-3 py-2 font-sans text-sm text-hm-text focus:outline-none focus:border-hm-muted"
+          className="w-full bg-ds-surface border border-ds-border px-3 py-2 font-sans text-sm text-ds-text focus:outline-none focus:border-ds-muted"
           placeholder="e.g. CI deploy"
         />
         {errors.name && <p className="mt-1 text-sm text-red-400">{errors.name.message}</p>}
       </div>
       <div>
-        <label className="block font-mono text-xs text-hm-muted mb-2">Scopes</label>
+        <label className="block font-mono text-xs text-ds-muted mb-2">Scopes</label>
         <Controller
           name="scopes"
           control={control}
@@ -63,11 +63,11 @@ export function ApiKeyForm({ onSubmit, onCancel }: ApiKeyFormProps) {
           render={({ field }) => (
             <div className="flex flex-wrap gap-3">
               {SCOPE_OPTIONS.map(({ value, label }) => (
-                <label key={value} className="flex items-center gap-2 text-sm text-hm-text cursor-pointer">
+                <label key={value} className="flex items-center gap-2 text-sm text-ds-text cursor-pointer">
                   <input
                     type="checkbox"
                     checked={field.value.includes(value)}
-                    className="rounded border-hm-border"
+                    className="rounded border-ds-border"
                     onChange={(e) => {
                       const next = e.target.checked
                         ? [...field.value, value]
@@ -84,13 +84,13 @@ export function ApiKeyForm({ onSubmit, onCancel }: ApiKeyFormProps) {
         {errors.scopes && <p className="mt-1 text-sm text-red-400">{errors.scopes.message}</p>}
       </div>
       <div>
-        <label className="block font-mono text-xs text-hm-muted mb-1">Expires (days, optional)</label>
+        <label className="block font-mono text-xs text-ds-muted mb-1">Expires (days, optional)</label>
         <input
           type="number"
           min={0}
           placeholder="Leave empty for no expiry"
           {...register("expires_days")}
-          className="w-full bg-hm-surface border border-hm-border px-3 py-2 font-sans text-sm text-hm-text focus:outline-none focus:border-hm-muted"
+          className="w-full bg-ds-surface border border-ds-border px-3 py-2 font-sans text-sm text-ds-text focus:outline-none focus:border-ds-muted"
         />
         {errors.expires_days && <p className="mt-1 text-sm text-red-400">{errors.expires_days.message}</p>}
       </div>

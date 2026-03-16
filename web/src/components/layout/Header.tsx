@@ -12,18 +12,18 @@ export function Header() {
   const displayName = me?.username ?? session?.user?.name ?? session?.user?.email ?? "Account";
 
   return (
-    <header className="sticky top-0 z-50 bg-hm-bg/95 backdrop-blur border-b border-hm-border min-h-[48px] flex items-center px-hm-lg">
+    <header className="sticky top-0 z-50 bg-ds-bg/95 backdrop-blur border-b border-ds-border min-h-[48px] flex items-center px-ds-lg">
       <div className="w-full max-w-6xl mx-auto flex items-center justify-between gap-4">
         <Link
           to="/"
-          className="font-mono text-xs tracking-widest uppercase text-hm-text hover:opacity-90 transition-opacity"
+          className="font-mono text-xs tracking-widest uppercase text-ds-text hover:opacity-90 transition-opacity"
         >
           Devsper Registry
         </Link>
         
         <Link 
           to="/packages" 
-          className="ml-4 font-sans text-sm font-medium text-hm-muted hover:text-hm-text transition-colors"
+          className="ml-4 font-sans text-sm font-medium text-ds-muted hover:text-ds-text transition-colors"
         >
           Packages
         </Link>
@@ -35,7 +35,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            className="sm:hidden p-2 text-hm-muted hover:text-hm-text transition-opacity"
+            className="sm:hidden p-2 text-ds-muted hover:text-ds-text transition-opacity"
             onClick={() => setSearchOpen((o) => !o)}
             aria-label="Search"
           >
@@ -46,7 +46,7 @@ export function Header() {
             <>
               <Link
                 to="/dashboard"
-                className="p-2 text-hm-muted hover:text-hm-text transition-opacity"
+                className="p-2 text-ds-muted hover:text-ds-text transition-opacity"
                 title="Dashboard"
               >
                 <LayoutDashboard size={18} />
@@ -54,23 +54,23 @@ export function Header() {
               <div className="relative group">
                 <button
                   type="button"
-                  className="flex items-center gap-2 px-2 py-1.5 text-hm-muted hover:text-hm-text transition-opacity font-sans text-sm"
+                  className="flex items-center gap-2 px-2 py-1.5 text-ds-muted hover:text-ds-text transition-opacity font-sans text-sm"
                   aria-expanded="false"
                   aria-haspopup="true"
                 >
                   <User size={18} />
                   <span className="hidden sm:inline">{displayName}</span>
                 </button>
-                <div className="absolute right-0 top-full mt-1 py-1 w-48 bg-hm-surface border border-hm-border rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                <div className="absolute right-0 top-full mt-1 py-1 w-48 bg-ds-surface border border-ds-border rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                   <Link
                     to="/dashboard/settings"
-                    className="block px-3 py-2 text-sm text-hm-text-passive hover:text-hm-text hover:bg-hm-border/50"
+                    className="block px-3 py-2 text-sm text-ds-text-passive hover:text-ds-text hover:bg-ds-border/50"
                   >
                     Settings
                   </Link>
                   <button
                     type="button"
-                    className="w-full text-left px-3 py-2 text-sm text-hm-text-passive hover:text-hm-text hover:bg-hm-border/50 flex items-center gap-2"
+                    className="w-full text-left px-3 py-2 text-sm text-ds-text-passive hover:text-ds-text hover:bg-ds-border/50 flex items-center gap-2"
                     onClick={() => {
                       signOut();
                       navigate("/");
@@ -85,7 +85,7 @@ export function Header() {
           ) : (
             <Link
               to="/login"
-              className="flex items-center gap-2 px-3 py-1.5 text-sm text-hm-muted hover:text-hm-text transition-opacity"
+              className="flex items-center gap-2 px-3 py-1.5 text-sm text-ds-muted hover:text-ds-text transition-opacity"
             >
               <LogIn size={18} />
               <span>Log in</span>
@@ -96,7 +96,7 @@ export function Header() {
             href="https://github.com/devsper-com/registry"
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 text-hm-muted hover:text-hm-text transition-opacity"
+            className="p-2 text-ds-muted hover:text-ds-text transition-opacity"
             aria-label="GitHub"
           >
             <Github size={18} />
@@ -105,7 +105,7 @@ export function Header() {
       </div>
 
       {searchOpen && (
-        <div className="sm:hidden absolute top-full left-0 right-0 p-2 bg-hm-bg border-b border-hm-border">
+        <div className="sm:hidden absolute top-full left-0 right-0 p-2 bg-ds-bg border-b border-ds-border">
           <SearchBar inline onSelect={() => setSearchOpen(false)} />
         </div>
       )}

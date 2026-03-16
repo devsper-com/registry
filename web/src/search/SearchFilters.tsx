@@ -14,19 +14,19 @@ export function SearchFilters() {
 
   return (
     <div className="flex flex-wrap items-center gap-4 py-2 font-sans text-sm">
-      <label className="flex items-center gap-2 text-hm-muted">
+      <label className="flex items-center gap-2 text-ds-muted">
         <input
           type="checkbox"
           checked={verifiedOnly}
           onChange={(e) => update("verified", e.target.checked ? "1" : null)}
-          className="rounded border-hm-border"
+          className="rounded border-ds-border"
         />
         Verified only
       </label>
       <select
         value={sort}
         onChange={(e) => update("sort", e.target.value)}
-        className="bg-hm-surface border border-hm-border px-2 py-1 text-hm-text focus:outline-none focus:border-hm-muted"
+        className="bg-ds-surface border border-ds-border px-2 py-1 text-ds-text focus:outline-none focus:border-ds-muted"
       >
         <option value="relevance">Relevance</option>
         <option value="downloads">Downloads</option>

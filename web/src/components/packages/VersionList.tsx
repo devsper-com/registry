@@ -20,32 +20,32 @@ function statusVariant(s: string | null | undefined): "pending" | "running" | "p
 
 export function VersionList({ packageName, versions }: VersionListProps) {
   return (
-    <div className="border border-hm-border overflow-x-auto">
+    <div className="border border-ds-border overflow-x-auto">
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b border-hm-border bg-hm-surface">
-            <th className="text-left px-4 py-2 font-semibold text-hm-text">Version</th>
-            <th className="text-left px-4 py-2 font-semibold text-hm-text">Uploaded</th>
-            <th className="text-left px-4 py-2 font-semibold text-hm-text">Requires Python</th>
-            <th className="text-left px-4 py-2 font-semibold text-hm-text">Status</th>
+          <tr className="border-b border-ds-border bg-ds-surface">
+            <th className="text-left px-4 py-2 font-semibold text-ds-text">Version</th>
+            <th className="text-left px-4 py-2 font-semibold text-ds-text">Uploaded</th>
+            <th className="text-left px-4 py-2 font-semibold text-ds-text">Requires Python</th>
+            <th className="text-left px-4 py-2 font-semibold text-ds-text">Status</th>
           </tr>
         </thead>
         <tbody>
           {versions.map((v) => (
-            <tr key={v.id} className="border-b border-hm-border last:border-0 hover:bg-hm-surface/50">
+            <tr key={v.id} className="border-b border-ds-border last:border-0 hover:bg-ds-surface/50">
               <td className="px-4 py-2">
                 <Link
                   to={`/packages/${packageName}/v/${v.version}`}
-                  className="text-hm-text hover:underline font-mono"
+                  className="text-ds-text hover:underline font-mono"
                 >
                   {v.version}
                 </Link>
                 {v.yanked && <Badge variant="yanked" className="ml-2">Yanked</Badge>}
               </td>
-              <td className="px-4 py-2 text-hm-muted">
+              <td className="px-4 py-2 text-ds-muted">
                 {v.uploaded_at ? new Date(v.uploaded_at).toLocaleDateString() : "—"}
               </td>
-              <td className="px-4 py-2 font-mono text-hm-text-passive">
+              <td className="px-4 py-2 font-mono text-ds-text-passive">
                 {v.requires_python ?? "—"}
               </td>
               <td className="px-4 py-2">

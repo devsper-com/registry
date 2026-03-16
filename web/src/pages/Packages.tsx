@@ -37,7 +37,7 @@ export function Packages() {
 
   return (
     <div className="max-w-4xl mx-auto py-8">
-      <h1 className="font-sans text-3xl font-bold text-hm-text mb-6">All Packages</h1>
+      <h1 className="font-sans text-3xl font-bold text-ds-text mb-6">All Packages</h1>
       
       {isLoading ? (
         <div className="space-y-4">
@@ -51,7 +51,7 @@ export function Packages() {
             <PackageCard key={pkg.id} pkg={pkg} />
           ))}
           {data?.packages.length === 0 && (
-            <p className="text-hm-muted col-span-2 text-center py-10">
+            <p className="text-ds-muted col-span-2 text-center py-10">
               No packages found.
             </p>
           )}
@@ -66,7 +66,7 @@ export function Packages() {
         >
           Previous
         </Button>
-        <span className="flex items-center text-hm-muted">Page {page}</span>
+        <span className="flex items-center text-ds-muted">Page {page}</span>
         <Button
           variant="outline"
           disabled={!data || data.packages.length < 20 || isLoading}

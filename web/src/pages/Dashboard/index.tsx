@@ -24,10 +24,10 @@ export function Dashboard() {
     >
       <Sidebar variant="dashboard" />
       <div className="flex-1 min-w-0">
-        <h1 className="font-sans text-2xl font-semibold text-hm-text mb-6">Dashboard</h1>
-        <p className="text-hm-muted mb-6">Your packages and recent activity.</p>
+        <h1 className="font-sans text-2xl font-semibold text-ds-text mb-6">Dashboard</h1>
+        <p className="text-ds-muted mb-6">Your packages and recent activity.</p>
         <section>
-          <h2 className="font-mono text-xs tracking-wider uppercase text-hm-muted mb-4">Your packages</h2>
+          <h2 className="font-mono text-xs tracking-wider uppercase text-ds-muted mb-4">Your packages</h2>
           {isLoading ? (
             <div className="space-y-2">
               <LoadingSkeleton className="h-16 w-full" />
@@ -40,10 +40,10 @@ export function Dashboard() {
               description="Create your first package to start publishing."
               action={
                 <div className="flex flex-wrap gap-2 justify-center">
-                  <Link to="/dashboard/packages/new" className="inline-flex items-center justify-center font-mono text-xs tracking-wider uppercase px-4 py-2 border border-hm-border text-hm-text hover:bg-hm-surface">
+                  <Link to="/dashboard/packages/new" className="inline-flex items-center justify-center font-mono text-xs tracking-wider uppercase px-4 py-2 border border-ds-border text-ds-text hover:bg-ds-surface">
                     Create package
                   </Link>
-                  <Link to="/dashboard/packages" className="inline-flex items-center justify-center font-mono text-xs tracking-wider uppercase px-4 py-2 text-hm-muted hover:text-hm-text">
+                  <Link to="/dashboard/packages" className="inline-flex items-center justify-center font-mono text-xs tracking-wider uppercase px-4 py-2 text-ds-muted hover:text-ds-text">
                     Manage packages
                   </Link>
                 </div>
@@ -54,7 +54,7 @@ export function Dashboard() {
               {packages.slice(0, 5).map((pkg) => (
                 <PackageCard key={pkg.id} pkg={pkg} />
               ))}
-              <Link to="/dashboard/packages" className="text-sm text-hm-muted hover:text-hm-text">
+              <Link to="/dashboard/packages" className="text-sm text-ds-muted hover:text-ds-text">
                 View all →
               </Link>
             </div>

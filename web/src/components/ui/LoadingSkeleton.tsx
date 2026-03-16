@@ -8,7 +8,7 @@ export function LoadingSkeleton({ className }: LoadingSkeletonProps) {
   return (
     <div
       className={clsx(
-        "animate-pulse rounded bg-hm-surface",
+        "animate-pulse rounded bg-ds-surface",
         className
       )}
       style={{

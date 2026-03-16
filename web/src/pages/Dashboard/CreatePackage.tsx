@@ -61,34 +61,34 @@ export function CreatePackage() {
     >
       <Sidebar variant="dashboard" />
       <div className="flex-1 min-w-0 max-w-md">
-        <h1 className="font-sans text-2xl font-semibold text-hm-text mb-6">Create package</h1>
-        <p className="text-sm text-hm-muted mb-6">Register a new package name. You can upload releases afterward.</p>
+        <h1 className="font-sans text-2xl font-semibold text-ds-text mb-6">Create package</h1>
+        <p className="text-sm text-ds-muted mb-6">Register a new package name. You can upload releases afterward.</p>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {error && <p className="text-sm text-red-400">{error}</p>}
           <div>
-            <label className="block font-mono text-xs text-hm-muted mb-1">Name</label>
+            <label className="block font-mono text-xs text-ds-muted mb-1">Name</label>
             <input
               {...register("name")}
               placeholder="my-plugin"
-              className="w-full bg-hm-surface border border-hm-border px-3 py-2 text-hm-text focus:outline-none focus:border-hm-muted"
+              className="w-full bg-ds-surface border border-ds-border px-3 py-2 text-ds-text focus:outline-none focus:border-ds-muted"
             />
             {errors.name && <p className="mt-1 text-sm text-red-400">{errors.name.message}</p>}
           </div>
           <div>
-            <label className="block font-mono text-xs text-hm-muted mb-1">Display name</label>
+            <label className="block font-mono text-xs text-ds-muted mb-1">Display name</label>
             <input
               {...register("display_name")}
               placeholder="My Plugin"
-              className="w-full bg-hm-surface border border-hm-border px-3 py-2 text-hm-text focus:outline-none focus:border-hm-muted"
+              className="w-full bg-ds-surface border border-ds-border px-3 py-2 text-ds-text focus:outline-none focus:border-ds-muted"
             />
             {errors.display_name && <p className="mt-1 text-sm text-red-400">{errors.display_name.message}</p>}
           </div>
           <div>
-            <label className="block font-mono text-xs text-hm-muted mb-1">Description (optional)</label>
+            <label className="block font-mono text-xs text-ds-muted mb-1">Description (optional)</label>
             <textarea
               {...register("description")}
               rows={3}
-              className="w-full bg-hm-surface border border-hm-border px-3 py-2 text-hm-text focus:outline-none focus:border-hm-muted resize-y"
+              className="w-full bg-ds-surface border border-ds-border px-3 py-2 text-ds-text focus:outline-none focus:border-ds-muted resize-y"
             />
           </div>
           <div className="flex gap-2">

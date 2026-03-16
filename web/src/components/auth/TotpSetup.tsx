@@ -30,8 +30,8 @@ export function TotpSetup({ totpURI, qrCodeUrl, secret, onVerify }: TotpSetupPro
   return (
     <div className="space-y-4 max-w-sm">
       {showQR && (
-        <div className="flex flex-col items-center gap-2 p-4 bg-hm-surface border border-hm-border rounded">
-          <p className="text-xs text-hm-muted">Scan with your authenticator app</p>
+        <div className="flex flex-col items-center gap-2 p-4 bg-ds-surface border border-ds-border rounded">
+          <p className="text-xs text-ds-muted">Scan with your authenticator app</p>
           {totpURI ? (
             <QRCodeSVG value={totpURI} size={160} level="M" className="rounded" />
           ) : (
@@ -40,7 +40,7 @@ export function TotpSetup({ totpURI, qrCodeUrl, secret, onVerify }: TotpSetupPro
         </div>
       )}
       {secret && (
-        <p className="font-mono text-xs text-hm-muted break-all">
+        <p className="font-mono text-xs text-ds-muted break-all">
           Secret: {secret}
         </p>
       )}
@@ -49,7 +49,7 @@ export function TotpSetup({ totpURI, qrCodeUrl, secret, onVerify }: TotpSetupPro
           {...register("code")}
           maxLength={6}
           placeholder="000000"
-          className="w-full bg-hm-surface border border-hm-border px-3 py-2 font-mono text-lg text-hm-text text-center tracking-widest focus:outline-none focus:border-hm-muted"
+          className="w-full bg-ds-surface border border-ds-border px-3 py-2 font-mono text-lg text-ds-text text-center tracking-widest focus:outline-none focus:border-ds-muted"
         />
         {errors.code && <p className="text-sm text-red-400">{errors.code.message}</p>}
         <Button type="submit" disabled={isSubmitting}>

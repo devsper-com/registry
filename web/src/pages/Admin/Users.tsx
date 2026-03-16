@@ -18,26 +18,26 @@ export function AdminUsers() {
 
   return (
     <div>
-      <h1 className="font-sans text-2xl font-semibold text-hm-text mb-6">Users</h1>
+      <h1 className="font-sans text-2xl font-semibold text-ds-text mb-6">Users</h1>
       {isLoading ? (
-        <p className="text-hm-muted">Loading…</p>
+        <p className="text-ds-muted">Loading…</p>
       ) : (
-        <div className="border border-hm-border overflow-x-auto">
+        <div className="border border-ds-border overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-hm-border bg-hm-surface">
-                <th className="text-left px-4 py-2 font-semibold text-hm-text">Username</th>
-                <th className="text-left px-4 py-2 font-semibold text-hm-text">Email</th>
-                <th className="text-left px-4 py-2 font-semibold text-hm-text">Created</th>
-                <th className="text-left px-4 py-2 font-semibold text-hm-text">Actions</th>
+              <tr className="border-b border-ds-border bg-ds-surface">
+                <th className="text-left px-4 py-2 font-semibold text-ds-text">Username</th>
+                <th className="text-left px-4 py-2 font-semibold text-ds-text">Email</th>
+                <th className="text-left px-4 py-2 font-semibold text-ds-text">Created</th>
+                <th className="text-left px-4 py-2 font-semibold text-ds-text">Actions</th>
               </tr>
             </thead>
             <tbody>
               {(users ?? []).map((u) => (
-                <tr key={u.id} className="border-b border-hm-border last:border-0">
-                  <td className="px-4 py-2 font-mono text-hm-text">{u.username}</td>
-                  <td className="px-4 py-2 text-hm-muted">{u.email}</td>
-                  <td className="px-4 py-2 text-hm-muted">{new Date(u.created_at).toLocaleDateString()}</td>
+                <tr key={u.id} className="border-b border-ds-border last:border-0">
+                  <td className="px-4 py-2 font-mono text-ds-text">{u.username}</td>
+                  <td className="px-4 py-2 text-ds-muted">{u.email}</td>
+                  <td className="px-4 py-2 text-ds-muted">{new Date(u.created_at).toLocaleDateString()}</td>
                   <td className="px-4 py-2">
                     {!u.banned && (
                       <Button variant="destructive">Ban</Button>

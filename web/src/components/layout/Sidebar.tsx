@@ -42,7 +42,7 @@ export function Sidebar({ variant, className }: SidebarProps) {
   return (
     <aside
       className={clsx(
-        "w-[200px] shrink-0 font-mono text-[9px] tracking-wider uppercase text-hm-muted",
+        "w-[200px] shrink-0 font-mono text-[9px] tracking-wider uppercase text-ds-muted",
         className
       )}
     >
@@ -52,10 +52,10 @@ export function Sidebar({ variant, className }: SidebarProps) {
             key={to}
             to={to}
             className={clsx(
-              "py-hm-md px-hm-md border-l-2 border-transparent transition-colors",
-              "hover:text-hm-text",
+              "py-ds-md px-ds-md border-l-2 border-transparent transition-colors",
+              "hover:text-ds-text",
               pathname === to || (to !== "/dashboard" && pathname.startsWith(to + "/"))
-                ? "text-hm-text border-hm-text font-medium"
+                ? "text-ds-text border-ds-text font-medium"
                 : ""
             )}
           >

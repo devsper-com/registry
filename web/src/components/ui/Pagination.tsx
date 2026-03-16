@@ -15,16 +15,16 @@ export function Pagination({ basePath, currentPage, totalPages, searchParams }: 
   const next = currentPage < totalPages ? currentPage + 1 : null;
 
   return (
-    <nav className="flex items-center justify-center gap-2 font-mono text-xs text-hm-muted mt-hm-xl">
+    <nav className="flex items-center justify-center gap-2 font-mono text-xs text-ds-muted mt-ds-xl">
       {prev !== null ? (
         <Link
           to={`${basePath}?page=${prev}${qs ? "&" + qs.replace(/^\?/, "") : ""}`}
-          className="px-3 py-1.5 border border-hm-border hover:border-hm-muted hover:text-hm-text transition-opacity"
+          className="px-3 py-1.5 border border-ds-border hover:border-ds-muted hover:text-ds-text transition-opacity"
         >
           ← Previous
         </Link>
       ) : (
-        <span className="px-3 py-1.5 border border-hm-border opacity-50 cursor-not-allowed">
+        <span className="px-3 py-1.5 border border-ds-border opacity-50 cursor-not-allowed">
           ← Previous
         </span>
       )}
@@ -34,12 +34,12 @@ export function Pagination({ basePath, currentPage, totalPages, searchParams }: 
       {next !== null ? (
         <Link
           to={`${basePath}?page=${next}${qs ? "&" + qs.replace(/^\?/, "") : ""}`}
-          className="px-3 py-1.5 border border-hm-border hover:border-hm-muted hover:text-hm-text transition-opacity"
+          className="px-3 py-1.5 border border-ds-border hover:border-ds-muted hover:text-ds-text transition-opacity"
         >
           Next →
         </Link>
       ) : (
-        <span className="px-3 py-1.5 border border-hm-border opacity-50 cursor-not-allowed">
+        <span className="px-3 py-1.5 border border-ds-border opacity-50 cursor-not-allowed">
           Next →
         </span>
       )}

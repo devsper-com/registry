@@ -24,7 +24,7 @@ export function CopyButton({ text, className = "", size = 16 }: CopyButtonProps)
     <button
       type="button"
       onClick={handleCopy}
-      className={`p-2 text-hm-muted hover:text-hm-text transition-opacity ${className}`}
+      className={`p-2 text-ds-muted hover:text-ds-text transition-opacity ${className}`}
       aria-label={copied ? "Copied" : "Copy"}
       title={copied ? "Copied" : "Copy"}
     >

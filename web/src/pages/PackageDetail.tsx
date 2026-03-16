@@ -93,15 +93,15 @@ export function PackageDetail() {
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8">
       <div>
         <PackageHeader pkg={pkg} version={latestVersion?.version} />
-        <div className="flex border-b border-hm-border mt-8 gap-0">
+        <div className="flex border-b border-ds-border mt-8 gap-0">
           {tabs.map((t) => (
             <button
               key={t.id}
               type="button"
               onClick={() => setTab(t.id)}
               className={`px-4 py-2 font-mono text-xs uppercase tracking-wider border-b-2 -mb-px transition-colors ${tab === t.id
-                ? "border-hm-text text-hm-text"
-                : "border-transparent text-hm-muted hover:text-hm-text-passive"
+                ? "border-ds-text text-ds-text"
+                : "border-transparent text-ds-muted hover:text-ds-text-passive"
                 }`}
             >
               {t.label}
@@ -114,7 +114,7 @@ export function PackageDetail() {
               {pkg.description ? (
                 <ReadmeRenderer content={pkg.description} />
               ) : (
-                <p className="text-hm-muted">No README for this package.</p>
+                <p className="text-ds-muted">No README for this package.</p>
               )}
             </div>
           )}
@@ -125,7 +125,7 @@ export function PackageDetail() {
             files.length ? (
               <FileList packageName={pkg.name} files={files} />
             ) : (
-              <p className="text-hm-muted">No files listed. Select a version to see files.</p>
+              <p className="text-ds-muted">No files listed. Select a version to see files.</p>
             )
           )}
           {tab === "stats" && (
@@ -133,15 +133,15 @@ export function PackageDetail() {
           )}
           {tab === "settings" && isOwner && (
             <div className="space-y-8 max-w-2xl">
-              <div className="border border-hm-error/50 p-6">
-                <h3 className="font-sans text-xl font-semibold text-hm-error mb-2">Delete Package</h3>
-                <p className="text-hm-text-passive mb-6">
+              <div className="border border-ds-error/50 p-6">
+                <h3 className="font-sans text-xl font-semibold text-ds-error mb-2">Delete Package</h3>
+                <p className="text-ds-text-passive mb-6">
                   Permanently delete this package, all its versions, and all its files from the registry.
                   This action cannot be undone, and the package name will be freed up for others to use.
                 </p>
 
                 {deleteError && (
-                  <div className="bg-hm-error/10 border border-hm-error text-hm-error px-4 py-3 mb-4">
+                  <div className="bg-ds-error/10 border border-ds-error text-ds-error px-4 py-3 mb-4">
                     {deleteError}
                   </div>
                 )}
@@ -150,19 +150,19 @@ export function PackageDetail() {
                   <button
                     type="button"
                     onClick={() => setShowDeleteConfirm(true)}
-                    className="font-mono text-sm px-4 py-2 border border-hm-error text-hm-error hover:bg-hm-error hover:text-hm-surface transition-colors cursor-pointer"
+                    className="font-mono text-sm px-4 py-2 border border-ds-error text-ds-error hover:bg-ds-error hover:text-ds-surface transition-colors cursor-pointer"
                   >
                     Delete package
                   </button>
                 ) : (
                   <div className="space-y-4">
-                    <p className="font-semibold text-hm-error">Are you absolutely sure?</p>
+                    <p className="font-semibold text-ds-error">Are you absolutely sure?</p>
                     <div className="flex gap-4">
                       <button
                         type="button"
                         onClick={handleDelete}
                         disabled={isDeleting}
-                        className="font-mono text-sm px-4 py-2 border border-hm-error bg-hm-error text-hm-surface hover:bg-hm-error/90 transition-colors disabled:opacity-50 cursor-pointer"
+                        className="font-mono text-sm px-4 py-2 border border-ds-error bg-ds-error text-ds-surface hover:bg-ds-error/90 transition-colors disabled:opacity-50 cursor-pointer"
                       >
                         {isDeleting ? "Deleting..." : "Yes, delete package"}
                       </button>
@@ -170,7 +170,7 @@ export function PackageDetail() {
                         type="button"
                         onClick={() => setShowDeleteConfirm(false)}
                         disabled={isDeleting}
-                        className="font-mono text-sm px-4 py-2 border border-hm-border text-hm-text transition-colors hover:bg-hm-surface disabled:opacity-50 cursor-pointer"
+                        className="font-mono text-sm px-4 py-2 border border-ds-border text-ds-text transition-colors hover:bg-ds-surface disabled:opacity-50 cursor-pointer"
                       >
                         Cancel
                       </button>
@@ -183,20 +183,20 @@ export function PackageDetail() {
         </div>
       </div>
       <aside className="space-y-6">
-        <div className="border border-hm-border p-4">
-          <h4 className="font-mono text-xs tracking-wider uppercase text-hm-muted mb-2">Meta</h4>
-          <ul className="text-sm text-hm-text-passive space-y-1">
+        <div className="border border-ds-border p-4">
+          <h4 className="font-mono text-xs tracking-wider uppercase text-ds-muted mb-2">Meta</h4>
+          <ul className="text-sm text-ds-text-passive space-y-1">
             {pkg.license && <li>License: {pkg.license}</li>}
             {pkg.homepage && (
               <li>
-                <a href={pkg.homepage} target="_blank" rel="noopener noreferrer" className="text-hm-text hover:underline">
+                <a href={pkg.homepage} target="_blank" rel="noopener noreferrer" className="text-ds-text hover:underline">
                   Homepage
                 </a>
               </li>
             )}
             {pkg.repository && (
               <li>
-                <a href={pkg.repository} target="_blank" rel="noopener noreferrer" className="text-hm-text hover:underline">
+                <a href={pkg.repository} target="_blank" rel="noopener noreferrer" className="text-ds-text hover:underline">
                   Repository
                 </a>
               </li>
@@ -207,11 +207,11 @@ export function PackageDetail() {
           </ul>
         </div>
         {latestVersion?.requires_devsper && (
-          <div className="border border-hm-border p-4">
-            <h4 className="font-mono text-xs tracking-wider uppercase text-hm-muted mb-2">
+          <div className="border border-ds-border p-4">
+            <h4 className="font-mono text-xs tracking-wider uppercase text-ds-muted mb-2">
               Devsper compatibility
             </h4>
-            <p className="font-mono text-sm text-hm-text">{latestVersion.requires_devsper}</p>
+            <p className="font-mono text-sm text-ds-text">{latestVersion.requires_devsper}</p>
           </div>
         )}
         {latestVersion && (latestVersion as PackageVersion & { tool_count?: number }).tool_count ? (

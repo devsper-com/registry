@@ -43,9 +43,9 @@ export function DownloadChart({ data }: DownloadChartProps) {
           <Line
             type="monotone"
             dataKey="downloads"
-            stroke="#F5A623"
+            stroke="#8A2BE2"
             strokeWidth={2}
-            dot={{ fill: "#F5A623", r: 2 }}
+            dot={{ fill: "#8A2BE2", r: 2 }}
           />
         </LineChart>
       </ResponsiveContainer>

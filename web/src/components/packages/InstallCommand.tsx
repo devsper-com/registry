@@ -29,23 +29,23 @@ export function InstallCommand({ name, version }: InstallCommandProps) {
   const cmd = command(tab, name, version);
 
   return (
-    <div className="border border-hm-border border-l-4 border-l-hm-amber bg-hm-code-bg">
-      <div className="flex border-b border-hm-border">
+    <div className="border border-ds-border border-l-4 border-l-ds-violet bg-ds-code-bg">
+      <div className="flex border-b border-ds-border">
         {(["pip", "uv", "devsper"] as const).map((t) => (
           <button
             key={t}
             type="button"
             onClick={() => setTab(t)}
             className={`px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors ${tab === t
-                ? "bg-hm-surface text-hm-text border-b-2 border-hm-amber -mb-px"
-                : "text-hm-muted hover:text-hm-text-passive"
+                ? "bg-ds-surface text-ds-text border-b-2 border-ds-violet -mb-px"
+                : "text-ds-muted hover:text-ds-text-passive"
               }`}
           >
             {t}
           </button>
         ))}
       </div>
-      <div className="flex items-center justify-between gap-2 px-4 py-3 font-mono text-sm text-hm-text">
+      <div className="flex items-center justify-between gap-2 px-4 py-3 font-mono text-sm text-ds-text">
         <code className="break-all">{cmd}</code>
         <CopyButton text={cmd} className="shrink-0" />
       </div>

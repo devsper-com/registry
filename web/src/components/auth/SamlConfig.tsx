@@ -24,10 +24,10 @@ export function SamlConfig({ onSubmit, onTest }: SamlConfigProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 max-w-md">
       <div>
-        <label className="block font-mono text-xs text-hm-muted mb-1">SAML metadata URL</label>
+        <label className="block font-mono text-xs text-ds-muted mb-1">SAML metadata URL</label>
         <input
           {...register("metadata_url")}
-          className="w-full bg-hm-surface border border-hm-border px-3 py-2 font-sans text-sm text-hm-text focus:outline-none focus:border-hm-muted"
+          className="w-full bg-ds-surface border border-ds-border px-3 py-2 font-sans text-sm text-ds-text focus:outline-none focus:border-ds-muted"
           placeholder="https://idp.example.com/metadata"
         />
         {errors.metadata_url && (

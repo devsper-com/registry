@@ -74,18 +74,18 @@ export function ApiKeys() {
     >
       <Sidebar variant="dashboard" />
       <div className="flex-1 min-w-0">
-        <h1 className="font-sans text-2xl font-semibold text-hm-text mb-6">API keys</h1>
+        <h1 className="font-sans text-2xl font-semibold text-ds-text mb-6">API keys</h1>
         {createdKey && (
-          <div className="mb-6 p-4 bg-amber-500/10 border border-amber-500/30">
-            <p className="font-mono text-sm text-hm-text mb-2">Store this key securely. It will not be shown again.</p>
+          <div className="mb-6 p-4 bg-violet-500/10 border border-violet-500/30">
+            <p className="font-mono text-sm text-ds-text mb-2">Store this key securely. It will not be shown again.</p>
             <div className="flex items-center gap-2">
-              <code className="flex-1 break-all text-amber-400">{createdKey.key}</code>
+              <code className="flex-1 break-all text-violet-400">{createdKey.key}</code>
               <CopyButton text={createdKey.key} />
             </div>
             <button
               type="button"
               onClick={() => setCreatedKey(null)}
-              className="mt-2 text-xs text-hm-muted hover:text-hm-text"
+              className="mt-2 text-xs text-ds-muted hover:text-ds-text"
             >
               Dismiss
             </button>
@@ -108,15 +108,15 @@ export function ApiKeys() {
             </motion.div>
           )}
         </AnimatePresence>
-        <div className="mt-8 border border-hm-border overflow-x-auto">
+        <div className="mt-8 border border-ds-border overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-hm-border bg-hm-surface">
-                <th className="text-left px-4 py-2 font-semibold text-hm-text">Name</th>
-                <th className="text-left px-4 py-2 font-semibold text-hm-text">Prefix</th>
-                <th className="text-left px-4 py-2 font-semibold text-hm-text">Scopes</th>
-                <th className="text-left px-4 py-2 font-semibold text-hm-text">Last used</th>
-                <th className="text-left px-4 py-2 font-semibold text-hm-text"></th>
+              <tr className="border-b border-ds-border bg-ds-surface">
+                <th className="text-left px-4 py-2 font-semibold text-ds-text">Name</th>
+                <th className="text-left px-4 py-2 font-semibold text-ds-text">Prefix</th>
+                <th className="text-left px-4 py-2 font-semibold text-ds-text">Scopes</th>
+                <th className="text-left px-4 py-2 font-semibold text-ds-text">Last used</th>
+                <th className="text-left px-4 py-2 font-semibold text-ds-text"></th>
               </tr>
             </thead>
             <tbody>
@@ -129,11 +129,11 @@ export function ApiKeys() {
                   </td>
                 </tr>
               ) : (keys ?? []).map((k) => (
-                <tr key={k.id} className="border-b border-hm-border last:border-0">
-                  <td className="px-4 py-2 text-hm-text">{k.name}</td>
-                  <td className="px-4 py-2 font-mono text-hm-muted">{k.key_prefix}</td>
-                  <td className="px-4 py-2 text-hm-muted">{k.scopes?.join(", ") ?? "—"}</td>
-                  <td className="px-4 py-2 text-hm-muted">
+                <tr key={k.id} className="border-b border-ds-border last:border-0">
+                  <td className="px-4 py-2 text-ds-text">{k.name}</td>
+                  <td className="px-4 py-2 font-mono text-ds-muted">{k.key_prefix}</td>
+                  <td className="px-4 py-2 text-ds-muted">{k.scopes?.join(", ") ?? "—"}</td>
+                  <td className="px-4 py-2 text-ds-muted">
                     {k.last_used_at ? new Date(k.last_used_at).toLocaleString() : "—"}
                   </td>
                   <td className="px-4 py-2">

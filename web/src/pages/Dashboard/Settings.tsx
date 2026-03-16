@@ -163,21 +163,21 @@ export function Settings() {
     >
       <Sidebar variant="dashboard" />
       <div className="flex-1 min-w-0">
-        <h1 className="font-sans text-2xl font-semibold text-hm-text mb-6">Settings</h1>
+        <h1 className="font-sans text-2xl font-semibold text-ds-text mb-6">Settings</h1>
         <form onSubmit={handleSubmit((d) => update.mutate(d))} className="space-y-4 max-w-md">
           <div>
-            <label className="block font-mono text-xs text-hm-muted mb-1">Email</label>
+            <label className="block font-mono text-xs text-ds-muted mb-1">Email</label>
             <input
               {...register("email")}
-              className="w-full bg-hm-surface border border-hm-border px-3 py-2 text-hm-text focus:outline-none focus:border-hm-muted"
+              className="w-full bg-ds-surface border border-ds-border px-3 py-2 text-ds-text focus:outline-none focus:border-ds-muted"
             />
             {errors.email && <p className="text-sm text-red-400">{errors.email.message}</p>}
           </div>
           <div>
-            <label className="block font-mono text-xs text-hm-muted mb-1">Username</label>
+            <label className="block font-mono text-xs text-ds-muted mb-1">Username</label>
             <input
               {...register("username")}
-              className="w-full bg-hm-surface border border-hm-border px-3 py-2 text-hm-text focus:outline-none focus:border-hm-muted"
+              className="w-full bg-ds-surface border border-ds-border px-3 py-2 text-ds-text focus:outline-none focus:border-ds-muted"
             />
             {errors.username && <p className="text-sm text-red-400">{errors.username.message}</p>}
           </div>
@@ -189,23 +189,23 @@ export function Settings() {
         {hasPassword && (
           <>
             <section className="mt-12">
-              <h2 className="font-mono text-xs tracking-wider uppercase text-hm-muted mb-4">Two-factor authentication</h2>
+              <h2 className="font-mono text-xs tracking-wider uppercase text-ds-muted mb-4">Two-factor authentication</h2>
               {twoFactorError && <p className="text-sm text-red-400 mb-2">{twoFactorError}</p>}
               {twoFactorEnabled && !totpURI && (
                 <div className="space-y-2">
-                  <p className="text-sm text-hm-text">2FA is enabled.</p>
+                  <p className="text-sm text-ds-text">2FA is enabled.</p>
                   <Button type="button" variant="outline" onClick={onDisable2FA}>Disable 2FA</Button>
                 </div>
               )}
               {!twoFactorEnabled && !totpURI && (
                 <div className="space-y-3 max-w-sm">
-                  <p className="text-sm text-hm-muted">Add a second factor using an authenticator app.</p>
+                  <p className="text-sm text-ds-muted">Add a second factor using an authenticator app.</p>
                   <input
                     type="password"
                     value={twoFactorPassword}
                     onChange={(e) => setTwoFactorPassword(e.target.value)}
                     placeholder="Your password"
-                    className="w-full bg-hm-surface border border-hm-border px-3 py-2 text-hm-text focus:outline-none focus:border-hm-muted"
+                    className="w-full bg-ds-surface border border-ds-border px-3 py-2 text-ds-text focus:outline-none focus:border-ds-muted"
                   />
                   <Button type="button" onClick={onEnable2FA} disabled={enabling2FA}>
                     {enabling2FA ? "Preparing…" : "Enable 2FA"}
@@ -221,8 +221,8 @@ export function Settings() {
             </section>
 
             <section className="mt-8">
-              <h2 className="font-mono text-xs tracking-wider uppercase text-hm-muted mb-4">Passkeys</h2>
-              <p className="text-sm text-hm-muted mb-2">Use passkeys for passwordless sign-in.</p>
+              <h2 className="font-mono text-xs tracking-wider uppercase text-ds-muted mb-4">Passkeys</h2>
+              <p className="text-sm text-ds-muted mb-2">Use passkeys for passwordless sign-in.</p>
               <div className="flex flex-wrap gap-2 items-center mb-4">
                 <Button
                   type="button"
@@ -239,10 +239,10 @@ export function Settings() {
               {passkeysLoading ? (
                 <LoadingSkeleton className="h-10 w-64" />
               ) : passkeys.length > 0 ? (
-                <ul className="space-y-2 border border-hm-border rounded p-3 bg-hm-surface/50">
+                <ul className="space-y-2 border border-ds-border rounded p-3 bg-ds-surface/50">
                   {passkeys.map((p) => (
-                    <li key={p.id} className="flex items-center justify-between gap-4 py-2 border-b border-hm-border last:border-0">
-                      <span className="font-mono text-sm text-hm-text">{p.name ?? p.id.slice(0, 8)}</span>
+                    <li key={p.id} className="flex items-center justify-between gap-4 py-2 border-b border-ds-border last:border-0">
+                      <span className="font-mono text-sm text-ds-text">{p.name ?? p.id.slice(0, 8)}</span>
                       <ConfirmDialog
                         trigger={<Button variant="destructive" size="sm">Remove</Button>}
                         title="Remove passkey"
@@ -255,7 +255,7 @@ export function Settings() {
                   ))}
                 </ul>
               ) : (
-                <p className="text-sm text-hm-muted">No passkeys yet. Register one above.</p>
+                <p className="text-sm text-ds-muted">No passkeys yet. Register one above.</p>
               )}
             </section>
           </>
