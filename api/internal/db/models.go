@@ -121,7 +121,7 @@ type PackageVersion struct {
 	PackageID          uuid.UUID          `json:"package_id"`
 	Version            string             `json:"version"`
 	RequiresPython     pgtype.Text        `json:"requires_python"`
-	RequiresDevsper   pgtype.Text        `json:"requires_devsper"`
+	RequiresDevsper    pgtype.Text        `json:"requires_devsper"`
 	ToolCount          pgtype.Int4        `json:"tool_count"`
 	UploadedBy         pgtype.UUID        `json:"uploaded_by"`
 	UploadedAt         pgtype.Timestamptz `json:"uploaded_at"`
@@ -154,4 +154,11 @@ type User struct {
 	CreatedAt     pgtype.Timestamptz `json:"created_at"`
 	LastLoginAt   pgtype.Timestamptz `json:"last_login_at"`
 	Banned        pgtype.Bool        `json:"banned"`
+}
+
+type Waitlist struct {
+	Email     string             `json:"email"`
+	UseCase   string             `json:"use_case"`
+	Source    string             `json:"source"`
+	CreatedAt pgtype.Timestamptz `json:"created_at"`
 }

@@ -184,3 +184,12 @@ CREATE TABLE IF NOT EXISTS registry_profiles (
     created_at TIMESTAMPTZ DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS idx_registry_profiles_username ON registry_profiles(username);
+
+-- Waitlist (homepage signups). Duplicates ignored; temp emails rejected in app.
+CREATE TABLE IF NOT EXISTS waitlist (
+    email TEXT PRIMARY KEY,
+    use_case TEXT NOT NULL DEFAULT '',
+    source TEXT NOT NULL DEFAULT 'homepage',
+    created_at TIMESTAMPTZ DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_waitlist_created_at ON waitlist(created_at);

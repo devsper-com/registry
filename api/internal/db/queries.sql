@@ -223,3 +223,8 @@ RETURNING *;
 UPDATE registry_profiles SET username = $2, bio = $3, website = $4
 WHERE user_id = $1
 RETURNING *;
+
+-- name: InsertWaitlist :exec
+INSERT INTO waitlist (email, use_case, source)
+VALUES ($1, $2, $3)
+ON CONFLICT (email) DO NOTHING;

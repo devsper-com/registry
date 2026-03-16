@@ -43,6 +43,7 @@ type Querier interface {
 	IncrementFileDownloadCount(ctx context.Context, id uuid.UUID) error
 	IncrementPackageDownloadCount(ctx context.Context, id uuid.UUID) error
 	InsertAuditLog(ctx context.Context, arg InsertAuditLogParams) (int64, error)
+	InsertWaitlist(ctx context.Context, arg InsertWaitlistParams) error
 	ListAPIKeysForUser(ctx context.Context, userID uuid.UUID) ([]ListAPIKeysForUserRow, error)
 	ListDockerImagesForPackage(ctx context.Context, packageID uuid.UUID) ([]DockerImage, error)
 	ListFilesForVersion(ctx context.Context, versionID uuid.UUID) ([]PackageFile, error)

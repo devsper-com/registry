@@ -287,7 +287,7 @@ type CreatePackageVersionParams struct {
 	PackageID          uuid.UUID   `json:"package_id"`
 	Version            string      `json:"version"`
 	RequiresPython     pgtype.Text `json:"requires_python"`
-	RequiresDevsper   pgtype.Text `json:"requires_devsper"`
+	RequiresDevsper    pgtype.Text `json:"requires_devsper"`
 	UploadedBy         pgtype.UUID `json:"uploaded_by"`
 	VerificationStatus pgtype.Text `json:"verification_status"`
 }
@@ -824,6 +824,23 @@ func (q *Queries) InsertAuditLog(ctx context.Context, arg InsertAuditLogParams) 
 	return id, err
 }
 
+const insertWaitlist = `-- name: InsertWaitlist :exec
+INSERT INTO waitlist (email, use_case, source)
+VALUES ($1, $2, $3)
+ON CONFLICT (email) DO NOTHING
+`
+
+type InsertWaitlistParams struct {
+	Email   string `json:"email"`
+	UseCase string `json:"use_case"`
+	Source  string `json:"source"`
+}
+
+func (q *Queries) InsertWaitlist(ctx context.Context, arg InsertWaitlistParams) error {
+	_, err := q.db.Exec(ctx, insertWaitlist, arg.Email, arg.UseCase, arg.Source)
+	return err
+}
+
 const listAPIKeysForUser = `-- name: ListAPIKeysForUser :many
 SELECT id, user_id, org_id, name, key_prefix, scopes, last_used_at, expires_at, created_at
 FROM api_keys WHERE user_id = $1 AND NOT revoked
@@ -1082,7 +1099,7 @@ type ListPendingVerificationsRow struct {
 	PackageID          uuid.UUID          `json:"package_id"`
 	Version            string             `json:"version"`
 	RequiresPython     pgtype.Text        `json:"requires_python"`
-	RequiresDevsper   pgtype.Text        `json:"requires_devsper"`
+	RequiresDevsper    pgtype.Text        `json:"requires_devsper"`
 	ToolCount          pgtype.Int4        `json:"tool_count"`
 	UploadedBy         pgtype.UUID        `json:"uploaded_by"`
 	UploadedAt         pgtype.Timestamptz `json:"uploaded_at"`

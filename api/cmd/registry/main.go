@@ -25,6 +25,7 @@ import (
 	"github.com/devsper-com/registry/api/internal/search"
 	"github.com/devsper-com/registry/api/internal/storage"
 	"github.com/devsper-com/registry/api/internal/users"
+	"github.com/devsper-com/registry/api/internal/waitlist"
 	"github.com/devsper-com/registry/api/internal/webhooks"
 )
 
@@ -81,6 +82,7 @@ func main() {
 	// Public
 	r.Get("/health", health.Liveness)
 	r.Get("/ready", health.Readiness(pool))
+	r.Post("/api/waitlist", waitlist.NewHandler(queries))
 
 	// PyPI simple index (public)
 	verifier := packages.NewVerifier(queries, cfg.VerificationWorkers)
