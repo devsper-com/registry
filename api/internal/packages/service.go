@@ -6,7 +6,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
 
-	"github.com/rithul/hivemind/registry/api/internal/db"
+	"github.com/devsper-com/registry/api/internal/db"
 )
 
 // Service holds business logic for package upload, verify, publish, yank.
@@ -22,7 +22,7 @@ func NewService(q *db.Queries, store Storage, verify *Verifier) *Service {
 }
 
 // CreateVersion creates a package version record (pending verification).
-func (s *Service) CreateVersion(ctx context.Context, packageID uuid.UUID, version, requiresPython, requiresHivemind string, uploadedBy uuid.UUID) (*db.PackageVersion, error) {
+func (s *Service) CreateVersion(ctx context.Context, packageID uuid.UUID, version, requiresPython, requiresDevsper string, uploadedBy uuid.UUID) (*db.PackageVersion, error) {
 	var up pgtype.UUID
 	up.Bytes = uploadedBy
 	up.Valid = true
@@ -30,7 +30,7 @@ func (s *Service) CreateVersion(ctx context.Context, packageID uuid.UUID, versio
 		PackageID:          packageID,
 		Version:             version,
 		RequiresPython:      pgtype.Text{String: requiresPython, Valid: requiresPython != ""},
-		RequiresHivemind:    pgtype.Text{String: requiresHivemind, Valid: requiresHivemind != ""},
+		RequiresDevsper:    pgtype.Text{String: requiresDevsper, Valid: requiresDevsper != ""},
 		UploadedBy:          up,
 		VerificationStatus:  pgtype.Text{String: "pending", Valid: true},
 	})

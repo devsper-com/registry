@@ -65,17 +65,17 @@ test-plugin-build:
 
 # Install test plugin from local registry (registry must be up and package uploaded or seeded)
 test-plugin-install:
-    pip install --index-url http://localhost:3000/simple/ hivemind-plugin-demo
+    pip install --index-url http://localhost:3000/simple/ devsper-plugin-demo
 
 # --- Production Deploy ---
 
 # Build and push API image to ECR (arm64)
 build-api:
-    docker buildx build --platform linux/arm64 -t {{ECR_REGISTRY}}/hivemind-registry-api:latest --push ./api
+    docker buildx build --platform linux/arm64 -t {{ECR_REGISTRY}}/devsper-registry-api:latest --push ./api
 
 # Build and push Web image to ECR (arm64)
 build-web:
-    docker buildx build --platform linux/arm64 -t {{ECR_REGISTRY}}/hivemind-registry-web:latest --push ./web
+    docker buildx build --platform linux/arm64 -t {{ECR_REGISTRY}}/devsper-registry-web:latest --push ./web
 
 # Build and push both images
 build-all: build-api build-web
@@ -104,7 +104,7 @@ deploy:
       --ssh-public-key file:///tmp/ec2_deploy_key.pub
     ssh -i /tmp/ec2_deploy_key -o StrictHostKeyChecking=no ubuntu@{{EC2_HOST}} \
       "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin {{ECR_REGISTRY}} && \
-       cd /opt/hivemind-registry && \
+       cd /opt/devsper-registry && \
        docker compose -f docker-compose.prod.yml --env-file .env.prod pull api web && \
        docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --no-deps api web && \
        docker image prune -f"
@@ -116,14 +116,14 @@ ship: build-all deploy smoke
 smoke:
     #!/usr/bin/env bash
     set -e
-    echo "Running smoke tests against https://registry.hivemind.rithul.dev ..."
-    curl -sf https://registry.hivemind.rithul.dev/api/v1/packages > /dev/null
+    echo "Running smoke tests against https://registry.devsper.com ..."
+    curl -sf https://registry.devsper.com/api/v1/packages > /dev/null
     echo "  ✓ API packages endpoint"
-    curl -sf https://registry.hivemind.rithul.dev/auth/jwks > /dev/null
+    curl -sf https://registry.devsper.com/auth/jwks > /dev/null
     echo "  ✓ JWKS endpoint"
-    curl -sf https://registry.hivemind.rithul.dev/ > /dev/null
+    curl -sf https://registry.devsper.com/ > /dev/null
     echo "  ✓ Frontend"
-    curl -sf https://hivemind.rithul.dev/ > /dev/null
+    curl -sf https://docs.devsper.com/ > /dev/null
     echo "  ✓ Docs site"
     echo "All smoke tests passed!"
 
@@ -137,7 +137,7 @@ logs service="api":
       --instance-os-user ubuntu \
       --ssh-public-key file:///tmp/ec2_deploy_key.pub
     ssh -i /tmp/ec2_deploy_key -o StrictHostKeyChecking=no ubuntu@{{EC2_HOST}} \
-      "docker logs hivemind-registry-{{service}}-1 --tail 50"
+      "docker logs devsper-registry-{{service}}-1 --tail 50"
 
 # Open SSH session to EC2
 ssh:
@@ -160,4 +160,4 @@ db-query query:
       --instance-os-user ubuntu \
       --ssh-public-key file:///tmp/ec2_deploy_key.pub
     ssh -i /tmp/ec2_deploy_key -o StrictHostKeyChecking=no ubuntu@{{EC2_HOST}} \
-      "docker exec hivemind-registry-postgres-1 psql -U registry -d hivemind_registry -c \"{{query}}\""
+      "docker exec devsper-registry-postgres-1 psql -U registry -d devsper_registry -c \"{{query}}\""

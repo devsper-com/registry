@@ -44,7 +44,7 @@ var baseURL = (_b = (_a = process.env.BETTER_AUTH_URL) !== null && _a !== void 0
 export var auth = betterAuth({
     basePath: "/auth",
     baseURL: baseURL,
-    appName: "Hivemind Registry",
+    appName: "Devsper Registry",
     database: new Pool({
         connectionString: process.env.DATABASE_URL,
     }),
@@ -90,7 +90,7 @@ export var auth = betterAuth({
     plugins: [
         bearer(),
         jwt(),
-        twoFactor({ issuer: "Hivemind Registry" }),
+        twoFactor({ issuer: "Devsper Registry" }),
         oneTap({ clientId: (_g = process.env.GOOGLE_CLIENT_ID) !== null && _g !== void 0 ? _g : "" }),
         passkey(),
         username(),

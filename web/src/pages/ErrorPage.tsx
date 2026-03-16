@@ -46,7 +46,7 @@ export function ErrorPage() {
               Go Home
             </Link>
             <a
-              href="https://github.com/rithulkamesh/hivemind/issues"
+              href="https://github.com/devsper-com/registry/issues"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 rounded bg-hm-border text-hm-text hover:bg-hm-muted transition-colors text-sm font-medium"

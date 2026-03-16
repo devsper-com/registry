@@ -9,7 +9,7 @@ output "ec2_instance_id" {
 
 output "ecr_registry_url" {
   value       = module.ecr.repository_url
-  description = "ECR repository URL for API image (e.g. 123456789.dkr.ecr.us-east-1.amazonaws.com/hivemind-registry-api)"
+  description = "ECR repository URL for API image (e.g. 123456789.dkr.ecr.us-east-1.amazonaws.com/devsper-registry-api)"
 }
 
 output "cloudfront_domain_name" {

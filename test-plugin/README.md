@@ -1,6 +1,6 @@
-# Hivemind Plugin Demo
+# Devsper Plugin Demo
 
-Minimal hivemind plugin for testing the registry. Provides one tool: `demo_echo`.
+Minimal devsper plugin for testing the registry. Provides one tool: `demo_echo`.
 
 ## Build
 
@@ -14,11 +14,11 @@ Wheel and sdist are in `dist/`. From repo root you can run `just test-plugin-bui
 ## Install from registry (after uploading or seeding)
 
 ```bash
-pip install --index-url http://localhost:3000/simple/ hivemind-plugin-demo
+pip install --index-url http://localhost:3000/simple/ devsper-plugin-demo
 ```
 
 Or from repo root: `just test-plugin-install` (registry must be up and the package must exist).
 
 ## Use
 
-Once installed, hivemind will discover the plugin via the `hivemind.plugins` entry point and register the `demo_echo` tool.
+Once installed, devsper will discover the plugin via the `devsper.plugins` entry point and register the `demo_echo` tool.

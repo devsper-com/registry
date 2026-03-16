@@ -17,10 +17,10 @@ import (
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
 
-	"github.com/rithul/hivemind/registry/api/internal/auth"
-	"github.com/rithul/hivemind/registry/api/internal/db"
-	"github.com/rithul/hivemind/registry/api/internal/packages"
-	"github.com/rithul/hivemind/registry/api/internal/testutil"
+	"github.com/devsper-com/registry/api/internal/auth"
+	"github.com/devsper-com/registry/api/internal/db"
+	"github.com/devsper-com/registry/api/internal/packages"
+	"github.com/devsper-com/registry/api/internal/testutil"
 )
 
 // makeTestWheel creates a minimal valid .whl (zip) archive for testing.

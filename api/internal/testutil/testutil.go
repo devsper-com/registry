@@ -17,11 +17,11 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/jackc/pgx/v5/pgxpool"
 
-	"github.com/rithul/hivemind/registry/api/internal/config"
-	"github.com/rithul/hivemind/registry/api/internal/db"
+	"github.com/devsper-com/registry/api/internal/config"
+	"github.com/devsper-com/registry/api/internal/db"
 )
 
-const defaultDatabaseURL = "postgres://registry:registry@localhost:5432/hivemind_registry?sslmode=disable"
+const defaultDatabaseURL = "postgres://registry:registry@localhost:5432/devsper_registry?sslmode=disable"
 
 var (
 	poolOnce sync.Once
@@ -135,7 +135,7 @@ func SetupTestData(t *testing.T, q *db.Queries) *Seed {
 		PackageID:          pkg.ID,
 		Version:            "1.0.0",
 		RequiresPython:     pgtype.Text{String: ">=3.12", Valid: true},
-		RequiresHivemind:   pgtype.Text{},
+		RequiresDevsper:   pgtype.Text{},
 		UploadedBy:         pgtype.UUID{Bytes: user.ID, Valid: true},
 		VerificationStatus: pgtype.Text{String: "passed", Valid: true},
 	})

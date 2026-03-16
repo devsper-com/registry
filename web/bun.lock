@@ -3,7 +3,7 @@
   "configVersion": 0,
   "workspaces": {
     "": {
-      "name": "hivemind-registry-web",
+      "name": "devsper-registry-web",
       "dependencies": {
         "@better-auth/api-key": "latest",
         "@better-auth/passkey": "latest",

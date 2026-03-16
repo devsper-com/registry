@@ -6,8 +6,8 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/rithul/hivemind/registry/api/internal/audit"
-	"github.com/rithul/hivemind/registry/api/internal/testutil"
+	"github.com/devsper-com/registry/api/internal/audit"
+	"github.com/devsper-com/registry/api/internal/testutil"
 )
 
 func TestAuditLog_WritesEntry(t *testing.T) {

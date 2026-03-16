@@ -164,10 +164,10 @@ func TestLoad_Defaults(t *testing.T) {
 	if cfg.Env != "development" {
 		t.Errorf("Env = %q, want %q", cfg.Env, "development")
 	}
-	if cfg.BaseURL != "https://registry.hivemind.rithul.dev" {
+	if cfg.BaseURL != "https://registry.devsper.com" {
 		t.Errorf("BaseURL = %q, want default", cfg.BaseURL)
 	}
-	if cfg.S3Bucket != "hivemind-registry-packages" {
+	if cfg.S3Bucket != "devsper-registry-packages" {
 		t.Errorf("S3Bucket = %q, want default", cfg.S3Bucket)
 	}
 	if cfg.S3Region != "us-east-1" {

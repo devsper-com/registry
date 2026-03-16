@@ -21,7 +21,7 @@ services:
     restart: always
     environment:
       - DATABASE_URL=postgres://${POSTGRES_USER:-registry}:${POSTGRES_PASSWORD:-password}@postgres:5432/${POSTGRES_DB:-registry}?sslmode=disable
-      - BASE_URL=${BASE_URL:-https://registry.hivemind.rithul.dev}
+      - BASE_URL=${BASE_URL:-https://registry.devsper.com}
       - JWT_SECRET=${JWT_SECRET}
       - INTERNAL_SECRET=${INTERNAL_SECRET}
       - PORT=8080
@@ -39,9 +39,9 @@ services:
     restart: always
     environment:
       - DATABASE_URL=postgres://${POSTGRES_USER:-registry}:${POSTGRES_PASSWORD:-password}@postgres:5432/${POSTGRES_DB:-registry}?sslmode=disable
-      - BETTER_AUTH_URL=${BASE_URL:-https://registry.hivemind.rithul.dev}/auth
-      - FRONTEND_URL=${BASE_URL:-https://registry.hivemind.rithul.dev}
-      - VITE_API_BASE_URL=${BASE_URL:-https://registry.hivemind.rithul.dev}
+      - BETTER_AUTH_URL=${BASE_URL:-https://registry.devsper.com}/auth
+      - FRONTEND_URL=${BASE_URL:-https://registry.devsper.com}
+      - VITE_API_BASE_URL=${BASE_URL:-https://registry.devsper.com}
       - INTERNAL_SECRET=${INTERNAL_SECRET}
       - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
       - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
@@ -61,12 +61,12 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      - DOMAIN=${DOMAIN:-registry.hivemind.rithul.dev}
+      - DOMAIN=${DOMAIN:-registry.devsper.com}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
-      - /opt/hivemind-docs:/srv/docs:ro
+      - /opt/devsper-docs:/srv/docs:ro
     depends_on:
       - api
       - web

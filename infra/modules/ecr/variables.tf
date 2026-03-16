@@ -5,6 +5,6 @@ variable "repository_name" {
 
 variable "name_prefix" {
   type        = string
-  default     = "hivemind-registry"
+  default     = "devsper-registry"
   description = "Prefix for resource names"
 }

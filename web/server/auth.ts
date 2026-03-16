@@ -9,7 +9,7 @@ const baseURL = process.env.BETTER_AUTH_URL ?? process.env.FRONTEND_URL ?? "http
 export const auth = betterAuth({
   basePath: "/auth",
   baseURL,
-  appName: "Hivemind Registry",
+  appName: "Devsper Registry",
   database: new Pool({
     connectionString: process.env.DATABASE_URL,
   }),
@@ -48,7 +48,7 @@ export const auth = betterAuth({
   plugins: [
     bearer(),
     jwt(),
-    twoFactor({ issuer: "Hivemind Registry" }),
+    twoFactor({ issuer: "Devsper Registry" }),
     oneTap({ clientId: process.env.GOOGLE_CLIENT_ID ?? "" }),
     passkey(),
     username(),

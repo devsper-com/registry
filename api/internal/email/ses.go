@@ -55,7 +55,7 @@ func (s *SES) Send(ctx context.Context, to, subject, bodyText, bodyHTML string) 
 // SendPublishSuccess sends "Your package X Y is now live".
 func (s *SES) SendPublishSuccess(ctx context.Context, to, name, version string) error {
 	subject := "Package " + name + " " + version + " is now live"
-	body := "Your package " + name + " " + version + " has passed verification and is now published on the Hivemind Registry."
+	body := "Your package " + name + " " + version + " has passed verification and is now published on the Devsper Registry."
 	return s.Send(ctx, to, subject, body, "")
 }
 

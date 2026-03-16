@@ -34,7 +34,7 @@ export interface PackageVersion {
   package_id: string;
   version: string;
   requires_python?: string | null;
-  requires_hivemind?: string | null;
+  requires_devsper?: string | null;
   tool_count?: number | null;
   uploaded_at?: string;
   published?: boolean;

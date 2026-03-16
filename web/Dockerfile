@@ -4,8 +4,8 @@ WORKDIR /app
 COPY package.json bun.lock* ./
 RUN bun install --frozen-lockfile
 COPY . .
-ARG VITE_API_BASE_URL=https://registry.hivemind.rithul.dev
-ARG VITE_REGISTRY_URL=https://registry.hivemind.rithul.dev/simple/
+ARG VITE_API_BASE_URL=https://registry.devsper.com
+ARG VITE_REGISTRY_URL=https://registry.devsper.com/simple/
 ARG VITE_GOOGLE_CLIENT_ID=
 ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
 ENV VITE_REGISTRY_URL=$VITE_REGISTRY_URL

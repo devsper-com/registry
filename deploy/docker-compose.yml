@@ -1,6 +1,6 @@
 # Production deploy on EC2: Caddy + API + Postgres.
 # Web static files are in volume web_dist (populated by GitHub Actions rsync).
-# API image tag set by deploy workflow; env from /opt/hivemind-registry/.env
+# API image tag set by deploy workflow; env from /opt/devsper-registry/.env
 
 version: "3.9"
 
@@ -22,8 +22,8 @@ services:
     restart: unless-stopped
 
   api:
-    image: ${API_IMAGE:-ghcr.io/rithulkamesh/hivemind-registry-api:latest}
-    env_file: /opt/hivemind-registry/.env
+    image: ${API_IMAGE:-ghcr.io/devsper-com/registry-registry-api:latest}
+    env_file: /opt/devsper-registry/.env
     depends_on:
       postgres:
         condition: service_healthy
@@ -37,14 +37,14 @@ services:
   postgres:
     image: postgres:16-alpine
     environment:
-      POSTGRES_DB: hivemind_registry
-      POSTGRES_USER: hivemind
+      POSTGRES_DB: devsper_registry
+      POSTGRES_USER: devsper
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U hivemind"]
+      test: ["CMD-SHELL", "pg_isready -U devsper"]
       interval: 5s
       timeout: 3s
       retries: 5

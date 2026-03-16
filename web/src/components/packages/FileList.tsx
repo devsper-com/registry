@@ -1,6 +1,6 @@
 import type { PackageFile } from "@/types";
 
-const REGISTRY_SIMPLE = import.meta.env.VITE_REGISTRY_URL?.replace(/\/?$/, "") ?? "https://registry.hivemind.rithul.dev/simple";
+const REGISTRY_SIMPLE = import.meta.env.VITE_REGISTRY_URL?.replace(/\/?$/, "") ?? "https://registry.devsper.com/simple";
 
 interface FileListProps {
   packageName: string;

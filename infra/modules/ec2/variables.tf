@@ -1,6 +1,6 @@
 variable "name_prefix" {
   type        = string
-  default     = "hivemind-registry"
+  default     = "devsper-registry"
   description = "Prefix for resource names"
 }
 
@@ -39,7 +39,7 @@ variable "user_data" {
 
 variable "repo_clone_url" {
   type        = string
-  default     = "https://github.com/rithulkamesh/hivemind.git"
+  default     = "https://github.com/devsper-com/registry.git"
   description = "Git clone URL for deploy files (public read)"
 }
 

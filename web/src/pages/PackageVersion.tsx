@@ -34,7 +34,7 @@ export function PackageVersion() {
       {pv && (
         <div className="mt-6 space-y-4">
           <p className="text-hm-muted text-sm">
-            Requires Python: {pv.requires_python ?? "—"} · Requires Hivemind: {pv.requires_hivemind ?? "—"}
+            Requires Python: {pv.requires_python ?? "—"} · Requires Devsper: {pv.requires_devsper ?? "—"}
           </p>
           {files.length > 0 && <FileList packageName={pkg.name} files={files} />}
         </div>

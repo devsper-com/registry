@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { CopyButton } from "@/components/ui/CopyButton";
 
-const REGISTRY_URL = import.meta.env.VITE_REGISTRY_URL ?? "https://registry.hivemind.rithul.dev/simple/";
+const REGISTRY_URL = import.meta.env.VITE_REGISTRY_URL ?? "https://registry.devsper.com/simple/";
 
-type Tab = "pip" | "uv" | "hivemind";
+type Tab = "pip" | "uv" | "devsper";
 
 function command(tab: Tab, name: string, version?: string): string {
   const pkg = version ? `${name}==${version}` : name;
@@ -12,8 +12,8 @@ function command(tab: Tab, name: string, version?: string): string {
       return `pip install --extra-index-url=${REGISTRY_URL} ${pkg}`;
     case "uv":
       return `uv add --index ${REGISTRY_URL} ${pkg}`;
-    case "hivemind":
-      return `hivemind plugins install ${name}`;
+    case "devsper":
+      return `devsper plugins install ${name}`;
     default:
       return "";
   }
@@ -31,7 +31,7 @@ export function InstallCommand({ name, version }: InstallCommandProps) {
   return (
     <div className="border border-hm-border border-l-4 border-l-hm-amber bg-hm-code-bg">
       <div className="flex border-b border-hm-border">
-        {(["pip", "uv", "hivemind"] as const).map((t) => (
+        {(["pip", "uv", "devsper"] as const).map((t) => (
           <button
             key={t}
             type="button"

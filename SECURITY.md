@@ -1,11 +1,11 @@
-# Security Policy — Hivemind Registry
+# Security Policy — Devsper Registry
 
 ## Reporting Vulnerabilities
 
 If you discover a security vulnerability, please report it responsibly:
 
 1. **Do NOT** open a public GitHub issue
-2. Email **security@hivemind.rithul.dev** with:
+2. Email **security@devsper.com** with:
    - Description of the vulnerability
    - Steps to reproduce
    - Potential impact assessment

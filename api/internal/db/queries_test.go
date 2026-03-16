@@ -10,8 +10,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
 
-	"github.com/rithul/hivemind/registry/api/internal/db"
-	"github.com/rithul/hivemind/registry/api/internal/testutil"
+	"github.com/devsper-com/registry/api/internal/db"
+	"github.com/devsper-com/registry/api/internal/testutil"
 )
 
 // helper to create a unique org and return it alongside cleanup.

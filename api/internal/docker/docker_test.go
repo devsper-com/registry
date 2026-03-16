@@ -10,9 +10,9 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/jackc/pgx/v5/pgtype"
 
-	"github.com/rithul/hivemind/registry/api/internal/db"
-	"github.com/rithul/hivemind/registry/api/internal/docker"
-	"github.com/rithul/hivemind/registry/api/internal/testutil"
+	"github.com/devsper-com/registry/api/internal/db"
+	"github.com/devsper-com/registry/api/internal/docker"
+	"github.com/devsper-com/registry/api/internal/testutil"
 )
 
 func TestListImages_EmptyReturnsArray(t *testing.T) {

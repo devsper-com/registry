@@ -18,7 +18,7 @@ export function Header() {
           to="/"
           className="font-mono text-xs tracking-widest uppercase text-hm-text hover:opacity-90 transition-opacity"
         >
-          Hivemind Registry
+          Devsper Registry
         </Link>
         
         <Link 
@@ -93,7 +93,7 @@ export function Header() {
           )}
 
           <a
-            href="https://github.com/rithulkamesh/hivemind"
+            href="https://github.com/devsper-com/registry"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 text-hm-muted hover:text-hm-text transition-opacity"

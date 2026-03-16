@@ -127,7 +127,7 @@ SELECT * FROM package_versions WHERE id = $1;
 SELECT * FROM package_versions WHERE package_id = $1 ORDER BY uploaded_at DESC;
 
 -- name: CreatePackageVersion :one
-INSERT INTO package_versions (package_id, version, requires_python, requires_hivemind, uploaded_by, verification_status)
+INSERT INTO package_versions (package_id, version, requires_python, requires_devsper, uploaded_by, verification_status)
 VALUES ($1, $2, $3, $4, $5, $6)
 RETURNING *;
 

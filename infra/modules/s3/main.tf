@@ -60,7 +60,7 @@ resource "aws_cloudfront_origin_access_control" "s3" {
 resource "aws_cloudfront_distribution" "packages" {
   enabled             = true
   is_ipv6_enabled     = true
-  comment             = "Packages bucket for hivemind registry"
+  comment             = "Packages bucket for devsper registry"
   default_root_object = ""
   price_class         = "PriceClass_100"
 

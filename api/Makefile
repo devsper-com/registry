@@ -20,4 +20,4 @@ lint:
 	golangci-lint run
 
 docker:
-	docker build -t hivemind-registry-api .
+	docker build -t devsper-registry-api .

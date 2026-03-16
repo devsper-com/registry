@@ -5,7 +5,7 @@ variable "zone_id" {
 
 variable "domain" {
   type        = string
-  description = "Root domain (e.g. hivemind.rithul.dev)"
+  description = "Root domain (e.g. devsper.com)"
 }
 
 variable "registry_fqdn" {
@@ -41,6 +41,6 @@ variable "ses_dkim_tokens" {
 
 variable "dmarc_rua" {
   type        = string
-  default     = "mailto:dmarc@hivemind.rithul.dev"
+  default     = "mailto:dmarc@devsper.com"
   description = "DMARC RUA address"
 }

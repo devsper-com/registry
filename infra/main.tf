@@ -27,7 +27,7 @@ provider "aws" {
   alias  = "us_east_1"
   region = "us-east-1"
   default_tags {
-    tags = { Project = "hivemind-registry" }
+    tags = { Project = "devsper-registry" }
   }
 }
 
@@ -39,14 +39,14 @@ module "networking" {
   public_subnet_cidr   = "10.0.1.0/24"
   availability_zone    = "${var.aws_region}a"
   ssh_allowed_cidrs    = var.ssh_allowed_cidrs
-  name_prefix          = "hivemind-registry"
+  name_prefix          = "devsper-registry"
 }
 
 # ECR (no dependency on S3/CloudFront)
 module "ecr" {
   source = "./modules/ecr"
   repository_name = var.ecr_api_repository_name
-  name_prefix     = "hivemind-registry"
+  name_prefix     = "devsper-registry"
 }
 
 # S3 + CloudFront (needs ACM cert in us-east-1)
@@ -56,7 +56,7 @@ module "s3" {
   bucket_name        = var.s3_packages_bucket
   packages_fqdn      = var.packages_fqdn
   acm_certificate_arn = local.acm_cert_arn
-  name_prefix        = "hivemind-registry"
+  name_prefix        = "devsper-registry"
 }
 
 # SES
@@ -71,7 +71,7 @@ module "ses" {
 module "iam" {
   source = "./modules/iam"
 
-  name_prefix                 = "hivemind-registry"
+  name_prefix                 = "devsper-registry"
   s3_packages_bucket_arn      = module.s3.bucket_arn
   cloudfront_distribution_arn = module.s3.cloudfront_distribution_arn
   ecr_repository_arn          = module.ecr.repository_arn
@@ -85,7 +85,7 @@ module "iam" {
 module "ec2" {
   source = "./modules/ec2"
 
-  name_prefix              = "hivemind-registry"
+  name_prefix              = "devsper-registry"
   subnet_id                = module.networking.public_subnet_id
   security_group_ids        = [module.networking.security_group_id]
   iam_instance_profile_name = module.iam.ec2_instance_profile_name

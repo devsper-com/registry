@@ -18,7 +18,7 @@ cd registry
 docker compose -f docker-compose.dev.yml up --build
 ```
 
-- **Postgres**: localhost:5432 (user `registry`, password `registry`, db `hivemind_registry`)
+- **Postgres**: localhost:5432 (user `registry`, password `registry`, db `devsper_registry`)
 - **API**: http://localhost:8080 (Go app with Air hot reload)
 - **Web**: http://localhost:3000 (Vite dev server; serves `/auth` in-process, proxies `/api` and `/simple` to API)
 
@@ -50,25 +50,25 @@ If you see **CONNRESET** in the browser or terminal, the API may have restarted 
 
    - Configure the index in `pyproject.toml`:
      ```toml
-     [tool.hivemind]
+     [tool.devsper]
      index-url = "http://localhost:3000/simple/"
      ```
    - Upload via the registry UI (package page → upload), or use the API with auth (e.g. `POST /api/v1/packages/{name}/upload` with Bearer token or API key).
 
 Trust/certificate warnings for `http://` are expected for local dev; use HTTPS in production.
 
-### Test plugin (hivemind-plugin-demo)
+### Test plugin (devsper-plugin-demo)
 
 A minimal plugin lives in `registry/test-plugin/`. To build and optionally seed the registry:
 
 1. **Build the wheel**: From repo root, `just test-plugin-build` (or `cd registry/test-plugin && pip install build && python -m build`).
-2. **Create the package and upload**: Use the web UI (register, create package `hivemind-plugin-demo`, upload the wheel from `registry/test-plugin/dist/`), or run the seed script when the API has storage (S3) configured:
+2. **Create the package and upload**: Use the web UI (register, create package `devsper-plugin-demo`, upload the wheel from `registry/test-plugin/dist/`), or run the seed script when the API has storage (S3) configured:
    ```bash
    ./registry/scripts/seed-dev.sh
    # Or with custom wheel: ./registry/scripts/seed-dev.sh /path/to/wheel.whl
    ```
    Set `REGISTRY_EMAIL`, `REGISTRY_PASSWORD` if needed; default is `seed@localhost` / `seedpass123`.
-3. **Install from the registry**: `pip install --index-url http://localhost:3000/simple/ hivemind-plugin-demo` (or `just test-plugin-install` from repo root).
+3. **Install from the registry**: `pip install --index-url http://localhost:3000/simple/ devsper-plugin-demo` (or `just test-plugin-install` from repo root).
 
 Without S3 configured, the API will not accept uploads (upload and file download return 503). For local dev with uploads, use AWS credentials and set `S3_BUCKET`, or use a local S3-compatible store (e.g. LocalStack).
 

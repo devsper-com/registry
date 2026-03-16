@@ -206,12 +206,12 @@ export function PackageDetail() {
             ) : null}
           </ul>
         </div>
-        {latestVersion?.requires_hivemind && (
+        {latestVersion?.requires_devsper && (
           <div className="border border-hm-border p-4">
             <h4 className="font-mono text-xs tracking-wider uppercase text-hm-muted mb-2">
-              Hivemind compatibility
+              Devsper compatibility
             </h4>
-            <p className="font-mono text-sm text-hm-text">{latestVersion.requires_hivemind}</p>
+            <p className="font-mono text-sm text-hm-text">{latestVersion.requires_devsper}</p>
           </div>
         )}
         {latestVersion && (latestVersion as PackageVersion & { tool_count?: number }).tool_count ? (

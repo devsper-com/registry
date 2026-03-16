@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/rithul/hivemind/registry/api/internal/search"
-	"github.com/rithul/hivemind/registry/api/internal/testutil"
+	"github.com/devsper-com/registry/api/internal/search"
+	"github.com/devsper-com/registry/api/internal/testutil"
 )
 
 func TestSearch_EmptyQuery(t *testing.T) {

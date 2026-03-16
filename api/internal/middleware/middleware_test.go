@@ -64,7 +64,7 @@ func TestCORSWithAllowlist_WildcardBlocked(t *testing.T) {
 }
 
 func TestCORSWithAllowlist_MultipleOrigins(t *testing.T) {
-	handler := CORSWithAllowlist("http://localhost:3000", "https://registry.hivemind.rithul.dev")(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	handler := CORSWithAllowlist("http://localhost:3000", "https://registry.devsper.com")(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 	}))
 
@@ -73,7 +73,7 @@ func TestCORSWithAllowlist_MultipleOrigins(t *testing.T) {
 		allowed bool
 	}{
 		{"http://localhost:3000", true},
-		{"https://registry.hivemind.rithul.dev", true},
+		{"https://registry.devsper.com", true},
 		{"http://evil.com", false},
 	}
 

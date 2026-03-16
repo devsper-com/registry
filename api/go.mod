@@ -1,4 +1,4 @@
-module github.com/rithul/hivemind/registry/api
+module github.com/devsper-com/registry/api
 
 go 1.24.0
 

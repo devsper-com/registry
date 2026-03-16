@@ -72,8 +72,8 @@ func (h *InternalHandler) ServeVerify(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusNoContent)
 		return
 	}
-	subject := "Verify your email – Hivemind Registry"
-	body := "Verify your email by clicking the link below (expires in 24 hours):\n\n" + req.URL + "\n\n— Hivemind Registry"
+	subject := "Verify your email – Devsper Registry"
+	body := "Verify your email by clicking the link below (expires in 24 hours):\n\n" + req.URL + "\n\n— Devsper Registry"
 	if err := h.Send.Send(r.Context(), req.Email, subject, body, ""); err != nil {
 		http.Error(w, "failed to send email", http.StatusInternalServerError)
 		return

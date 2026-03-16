@@ -12,10 +12,10 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/google/uuid"
 
-	"github.com/rithul/hivemind/registry/api/internal/auth"
-	"github.com/rithul/hivemind/registry/api/internal/db"
-	"github.com/rithul/hivemind/registry/api/internal/orgs"
-	"github.com/rithul/hivemind/registry/api/internal/testutil"
+	"github.com/devsper-com/registry/api/internal/auth"
+	"github.com/devsper-com/registry/api/internal/db"
+	"github.com/devsper-com/registry/api/internal/orgs"
+	"github.com/devsper-com/registry/api/internal/testutil"
 )
 
 // withUserID returns a context with the authenticated user ID set.

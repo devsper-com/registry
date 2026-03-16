@@ -1,6 +1,6 @@
 variable "name_prefix" {
   type        = string
-  default     = "hivemind-registry"
+  default     = "devsper-registry"
   description = "Prefix for IAM resources"
 }
 
@@ -21,7 +21,7 @@ variable "ecr_repository_arn" {
 
 variable "github_org_repo" {
   type        = string
-  description = "GitHub org/repo (e.g. rithulkamesh/hivemind)"
+  description = "GitHub org/repo (e.g. devsper-com/registry)"
 }
 
 variable "github_branch" {

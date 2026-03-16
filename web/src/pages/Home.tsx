@@ -6,8 +6,8 @@ import type { Package, Stats } from "@/types";
 import { PackageCard } from "@/components/packages/PackageCard";
 import { CopyButton } from "@/components/ui/CopyButton";
 
-const REGISTRY_URL = import.meta.env.VITE_REGISTRY_URL ?? "https://registry.hivemind.rithul.dev/simple/";
-const PLACEHOLDER_PLUGIN = "hivemind-plugin-foo";
+const REGISTRY_URL = import.meta.env.VITE_REGISTRY_URL ?? "https://registry.devsper.com/simple/";
+const PLACEHOLDER_PLUGIN = "devsper-plugin-foo";
 const DEFAULT_CMD = `pip install --index-url ${REGISTRY_URL} ${PLACEHOLDER_PLUGIN}`;
 
 function useCountUp(end: number, duration = 1500, deps: unknown[] = []) {
@@ -55,13 +55,13 @@ export function Home() {
   return (
     <div className="max-w-4xl">
       <p className="font-mono text-[11px] tracking-[0.2em] uppercase text-hm-muted mb-10">
-        Hivemind Plugin Registry
+        Devsper Plugin Registry
       </p>
       <h1 className="font-sans text-3xl sm:text-4xl font-bold text-hm-text leading-tight tracking-tight mb-2">
-        hivemind plugin registry
+        devsper plugin registry
       </h1>
       <p className="text-hm-muted mb-6 max-w-prose">
-        Discover, install, and publish hivemind plugins.
+        Discover, install, and publish devsper plugins.
       </p>
 
       <div className="border-l-4 border-l-hm-amber bg-hm-code-bg border border-hm-border flex items-center justify-between gap-4 px-4 py-3 font-mono text-sm text-hm-text mb-10">

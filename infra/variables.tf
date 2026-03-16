@@ -12,17 +12,17 @@ variable "environment" {
 
 variable "domain" {
   type        = string
-  description = "Root domain (e.g. hivemind.rithul.dev)"
+  description = "Root domain (e.g. devsper.com)"
 }
 
 variable "registry_fqdn" {
   type        = string
-  description = "Registry app FQDN (e.g. registry.hivemind.rithul.dev)"
+  description = "Registry app FQDN (e.g. registry.devsper.com)"
 }
 
 variable "packages_fqdn" {
   type        = string
-  description = "Packages/CloudFront FQDN (e.g. packages.hivemind.rithul.dev)"
+  description = "Packages/CloudFront FQDN (e.g. packages.devsper.com)"
 }
 
 variable "ssh_allowed_cidrs" {
@@ -44,7 +44,7 @@ variable "create_key_pair" {
 
 variable "github_org_repo" {
   type        = string
-  description = "GitHub org/repo for OIDC trust (e.g. rithulkamesh/hivemind)"
+  description = "GitHub org/repo for OIDC trust (e.g. devsper-com/registry)"
 }
 
 variable "github_branch" {
@@ -55,19 +55,19 @@ variable "github_branch" {
 
 variable "ecr_api_repository_name" {
   type        = string
-  default     = "hivemind-registry-api"
+  default     = "devsper-registry-api"
   description = "ECR repository name for API image"
 }
 
 variable "s3_packages_bucket" {
   type        = string
-  default     = "hivemind-registry-packages"
+  default     = "devsper-registry-packages"
   description = "S3 bucket name for package artifacts"
 }
 
 variable "ses_config_set" {
   type        = string
-  default     = "hivemind-registry"
+  default     = "devsper-registry"
   description = "SES configuration set name"
 }
 
@@ -85,12 +85,12 @@ variable "acm_certificate_arn" {
 
 variable "terraform_state_bucket_name" {
   type        = string
-  default     = "hivemind-terraform-state"
+  default     = "devsper-terraform-state"
   description = "S3 bucket name for Terraform state (GitHub Actions needs access)"
 }
 
 variable "terraform_lock_table_name" {
   type        = string
-  default     = "hivemind-terraform-locks"
+  default     = "devsper-terraform-locks"
   description = "DynamoDB table name for state locking (GitHub Actions needs access)"
 }

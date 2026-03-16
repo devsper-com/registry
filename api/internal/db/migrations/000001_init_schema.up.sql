@@ -84,7 +84,7 @@ CREATE TABLE package_versions (
     package_id UUID NOT NULL REFERENCES packages(id) ON DELETE CASCADE,
     version TEXT NOT NULL,
     requires_python TEXT,
-    requires_hivemind TEXT,
+    requires_devsper TEXT,
     tool_count INTEGER DEFAULT 0,
     uploaded_by UUID REFERENCES users(id),
     uploaded_at TIMESTAMPTZ DEFAULT now(),

@@ -24,11 +24,11 @@ systemctl enable --now docker
 usermod -aG docker ec2-user
 curl -sL "https://github.com/docker/compose/releases/latest/download/docker-compose-linux-aarch64" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
-mkdir -p /opt/hivemind-registry
-sudo -u ec2-user git clone --branch ${var.repo_branch} --single-branch --depth 1 ${var.repo_clone_url} /tmp/hivemind-repo
-cp -r /tmp/hivemind-repo/registry/deploy/* /opt/hivemind-registry/ || true
-chown -R ec2-user:ec2-user /opt/hivemind-registry
-rm -rf /tmp/hivemind-repo
+mkdir -p /opt/devsper-registry
+sudo -u ec2-user git clone --branch ${var.repo_branch} --single-branch --depth 1 ${var.repo_clone_url} /tmp/devsper-repo
+cp -r /tmp/devsper-repo/deploy/* /opt/devsper-registry/ || true
+chown -R ec2-user:ec2-user /opt/devsper-registry
+rm -rf /tmp/devsper-repo
 EOT
   user_data = var.user_data != "" ? var.user_data : local.user_data_base
 }

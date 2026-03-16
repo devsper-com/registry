@@ -5,7 +5,7 @@ variable "bucket_name" {
 
 variable "packages_fqdn" {
   type        = string
-  description = "FQDN for CloudFront (e.g. packages.hivemind.rithul.dev)"
+  description = "FQDN for CloudFront (e.g. packages.devsper.com)"
 }
 
 variable "acm_certificate_arn" {
@@ -15,6 +15,6 @@ variable "acm_certificate_arn" {
 
 variable "name_prefix" {
   type        = string
-  default     = "hivemind-registry"
+  default     = "devsper-registry"
   description = "Prefix for resource names"
 }

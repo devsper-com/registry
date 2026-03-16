@@ -6,7 +6,7 @@ import (
 )
 
 // CORSWithAllowlist adds CORS headers restricted to an explicit set of allowed origins.
-// Pass the frontend URL (e.g. "https://registry.hivemind.rithul.dev") and the API base URL.
+// Pass the frontend URL (e.g. "https://registry.devsper.com") and the API base URL.
 // Only exact-match origins receive credentialed CORS headers.
 func CORSWithAllowlist(allowedOrigins ...string) func(next http.Handler) http.Handler {
 	allowed := make(map[string]bool, len(allowedOrigins))

@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/google/uuid"
-	"github.com/rithul/hivemind/registry/api/internal/db"
+	"github.com/devsper-com/registry/api/internal/db"
 )
 
 // Verifier runs the verification pipeline (safety, pip-audit, bandit, etc.) in the background.

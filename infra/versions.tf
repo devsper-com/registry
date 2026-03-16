@@ -13,10 +13,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "hivemind-terraform-state"
+    bucket         = "devsper-terraform-state"
     key            = "registry/terraform.tfstate"
     region         = "us-east-1"
-    dynamodb_table = "hivemind-terraform-locks"
+    dynamodb_table = "devsper-terraform-locks"
     encrypt        = true
   }
 }
@@ -26,7 +26,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Project = "hivemind-registry"
+      Project = "devsper-registry"
     }
   }
 }

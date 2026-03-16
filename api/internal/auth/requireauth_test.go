@@ -12,10 +12,10 @@ import (
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
 
-	"github.com/rithul/hivemind/registry/api/internal/auth"
-	"github.com/rithul/hivemind/registry/api/internal/config"
-	"github.com/rithul/hivemind/registry/api/internal/db"
-	"github.com/rithul/hivemind/registry/api/internal/testutil"
+	"github.com/devsper-com/registry/api/internal/auth"
+	"github.com/devsper-com/registry/api/internal/config"
+	"github.com/devsper-com/registry/api/internal/db"
+	"github.com/devsper-com/registry/api/internal/testutil"
 )
 
 // mockAuthConfig implements auth.AuthConfig for tests.

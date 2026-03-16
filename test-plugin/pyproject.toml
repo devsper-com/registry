@@ -1,20 +1,20 @@
 [project]
-name = "hivemind-plugin-demo"
+name = "devsper-plugin-demo"
 version = "0.9.0"
-description = "Minimal hivemind plugin for testing the registry (one demo tool)"
+description = "Minimal devsper plugin for testing the registry (one demo tool)"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.12"
 dependencies = [
-    "hivemind-ai",
+    "devsper",
 ]
 
-[project.entry-points."hivemind.plugins"]
-demo = "hivemind_plugin_demo:load"
+[project.entry-points."devsper.plugins"]
+demo = "devsper_plugin_demo:load"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["hivemind_plugin_demo"]
+packages = ["devsper_plugin_demo"]

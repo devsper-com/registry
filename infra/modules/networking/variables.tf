@@ -22,6 +22,6 @@ variable "ssh_allowed_cidrs" {
 
 variable "name_prefix" {
   type        = string
-  default     = "hivemind-registry"
+  default     = "devsper-registry"
   description = "Prefix for resource names"
 }

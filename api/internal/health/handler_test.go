@@ -40,7 +40,7 @@ func testPool(t *testing.T) *pgxpool.Pool {
 	t.Helper()
 	url := os.Getenv("DATABASE_URL")
 	if url == "" {
-		url = "postgres://registry:registry@localhost:5432/hivemind_registry?sslmode=disable"
+		url = "postgres://registry:registry@localhost:5432/devsper_registry?sslmode=disable"
 	}
 	pool, err := pgxpool.New(context.Background(), url)
 	if err != nil {
@@ -77,7 +77,7 @@ func TestReadiness_ClosedPool(t *testing.T) {
 
 	url := os.Getenv("DATABASE_URL")
 	if url == "" {
-		url = "postgres://registry:registry@localhost:5432/hivemind_registry?sslmode=disable"
+		url = "postgres://registry:registry@localhost:5432/devsper_registry?sslmode=disable"
 	}
 	pool, err := pgxpool.New(context.Background(), url)
 	if err != nil {

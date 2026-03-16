@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/rithul/hivemind/registry/api/internal/db"
+	"github.com/devsper-com/registry/api/internal/db"
 )
 
 type Handler struct {

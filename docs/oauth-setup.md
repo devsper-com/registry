@@ -21,7 +21,7 @@ If a provider’s client ID is not set, that provider’s login button will retu
 1. Go to **GitHub → Settings → Developer settings → OAuth Apps** (or [github.com/settings/developers](https://github.com/settings/developers)).
 2. Click **New OAuth App**.
 3. Set:
-   - **Application name**: e.g. `Hivemind Registry (dev)`.
+   - **Application name**: e.g. `Devsper Registry (dev)`.
    - **Homepage URL**: e.g. `http://localhost:3000` (your frontend) or production URL.
    - **Authorization callback URL**: must be the **web app** callback URL (port must match where the app runs; using 5173 when the app is on 3000 causes ECONNREFUSED):
      - **Local dev**: `http://localhost:3000/auth/callback/github`

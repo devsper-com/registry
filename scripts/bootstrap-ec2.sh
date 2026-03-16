@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-echo "Bootstrapping EC2 instance for Hivemind Registry..."
+echo "Bootstrapping EC2 instance for Devsper Registry..."
 
 sudo apt-get update -y
 sudo apt-get upgrade -y

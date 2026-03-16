@@ -15,7 +15,7 @@ export function Footer() {
             Publish
           </Link>
           <a
-            href="https://hivemind.rithul.dev/docs"
+            href="https://docs.devsper.com/docs"
             target="_blank"
             rel="noopener noreferrer"
             className="font-mono text-[9px] tracking-widest uppercase text-hm-muted hover:text-hm-text transition-opacity"
@@ -23,7 +23,7 @@ export function Footer() {
             Docs
           </a>
           <a
-            href="https://github.com/rithulkamesh/hivemind"
+            href="https://github.com/devsper-com/registry"
             target="_blank"
             rel="noopener noreferrer"
             className="font-mono text-[9px] tracking-widest uppercase text-hm-muted hover:text-hm-text transition-opacity"
@@ -32,7 +32,7 @@ export function Footer() {
           </a>
         </div>
         <p className="font-mono text-[9px] tracking-widest uppercase text-hm-muted">
-          Hivemind Registry · registry.hivemind.rithul.dev
+          Devsper Registry · registry.devsper.com
         </p>
       </div>
     </footer>

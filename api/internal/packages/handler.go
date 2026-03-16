@@ -16,10 +16,10 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/jackc/pgx/v5/pgtype"
 
-	"github.com/rithul/hivemind/registry/api/internal/auth"
-	"github.com/rithul/hivemind/registry/api/internal/config"
-	"github.com/rithul/hivemind/registry/api/internal/db"
-	"github.com/rithul/hivemind/registry/api/internal/storage"
+	"github.com/devsper-com/registry/api/internal/auth"
+	"github.com/devsper-com/registry/api/internal/config"
+	"github.com/devsper-com/registry/api/internal/db"
+	"github.com/devsper-com/registry/api/internal/storage"
 )
 
 // validPackageName restricts names to safe alphanumeric + separators, PEP 508 style.
@@ -416,7 +416,7 @@ func (h *Handler) Upload(w http.ResponseWriter, r *http.Request) {
 		PackageID:          pkg.ID,
 		Version:            version,
 		RequiresPython:     pgtype.Text{},
-		RequiresHivemind:   pgtype.Text{},
+		RequiresDevsper:   pgtype.Text{},
 		UploadedBy:         up,
 		VerificationStatus: pgtype.Text{String: "pending", Valid: true},
 	})

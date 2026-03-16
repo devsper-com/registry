@@ -278,16 +278,16 @@ func (q *Queries) CreatePackageFile(ctx context.Context, arg CreatePackageFilePa
 }
 
 const createPackageVersion = `-- name: CreatePackageVersion :one
-INSERT INTO package_versions (package_id, version, requires_python, requires_hivemind, uploaded_by, verification_status)
+INSERT INTO package_versions (package_id, version, requires_python, requires_devsper, uploaded_by, verification_status)
 VALUES ($1, $2, $3, $4, $5, $6)
-RETURNING id, package_id, version, requires_python, requires_hivemind, tool_count, uploaded_by, uploaded_at, published, yanked, yank_reason, verification_status, verification_report, sigstore_bundle
+RETURNING id, package_id, version, requires_python, requires_devsper, tool_count, uploaded_by, uploaded_at, published, yanked, yank_reason, verification_status, verification_report, sigstore_bundle
 `
 
 type CreatePackageVersionParams struct {
 	PackageID          uuid.UUID   `json:"package_id"`
 	Version            string      `json:"version"`
 	RequiresPython     pgtype.Text `json:"requires_python"`
-	RequiresHivemind   pgtype.Text `json:"requires_hivemind"`
+	RequiresDevsper   pgtype.Text `json:"requires_devsper"`
 	UploadedBy         pgtype.UUID `json:"uploaded_by"`
 	VerificationStatus pgtype.Text `json:"verification_status"`
 }
@@ -297,7 +297,7 @@ func (q *Queries) CreatePackageVersion(ctx context.Context, arg CreatePackageVer
 		arg.PackageID,
 		arg.Version,
 		arg.RequiresPython,
-		arg.RequiresHivemind,
+		arg.RequiresDevsper,
 		arg.UploadedBy,
 		arg.VerificationStatus,
 	)
@@ -307,7 +307,7 @@ func (q *Queries) CreatePackageVersion(ctx context.Context, arg CreatePackageVer
 		&i.PackageID,
 		&i.Version,
 		&i.RequiresPython,
-		&i.RequiresHivemind,
+		&i.RequiresDevsper,
 		&i.ToolCount,
 		&i.UploadedBy,
 		&i.UploadedAt,
@@ -631,7 +631,7 @@ func (q *Queries) GetPackageFileByVersionAndFilename(ctx context.Context, arg Ge
 }
 
 const getPackageVersion = `-- name: GetPackageVersion :one
-SELECT pv.id, pv.package_id, pv.version, pv.requires_python, pv.requires_hivemind, pv.tool_count, pv.uploaded_by, pv.uploaded_at, pv.published, pv.yanked, pv.yank_reason, pv.verification_status, pv.verification_report, pv.sigstore_bundle FROM package_versions pv
+SELECT pv.id, pv.package_id, pv.version, pv.requires_python, pv.requires_devsper, pv.tool_count, pv.uploaded_by, pv.uploaded_at, pv.published, pv.yanked, pv.yank_reason, pv.verification_status, pv.verification_report, pv.sigstore_bundle FROM package_versions pv
 JOIN packages p ON p.id = pv.package_id
 WHERE (p.namespace IS NOT DISTINCT FROM $1) AND p.name = $2 AND pv.version = $3
 `
@@ -650,7 +650,7 @@ func (q *Queries) GetPackageVersion(ctx context.Context, arg GetPackageVersionPa
 		&i.PackageID,
 		&i.Version,
 		&i.RequiresPython,
-		&i.RequiresHivemind,
+		&i.RequiresDevsper,
 		&i.ToolCount,
 		&i.UploadedBy,
 		&i.UploadedAt,
@@ -750,7 +750,7 @@ func (q *Queries) GetUserByUsername(ctx context.Context, username string) (User,
 }
 
 const getVersionByID = `-- name: GetVersionByID :one
-SELECT id, package_id, version, requires_python, requires_hivemind, tool_count, uploaded_by, uploaded_at, published, yanked, yank_reason, verification_status, verification_report, sigstore_bundle FROM package_versions WHERE id = $1
+SELECT id, package_id, version, requires_python, requires_devsper, tool_count, uploaded_by, uploaded_at, published, yanked, yank_reason, verification_status, verification_report, sigstore_bundle FROM package_versions WHERE id = $1
 `
 
 func (q *Queries) GetVersionByID(ctx context.Context, id uuid.UUID) (PackageVersion, error) {
@@ -761,7 +761,7 @@ func (q *Queries) GetVersionByID(ctx context.Context, id uuid.UUID) (PackageVers
 		&i.PackageID,
 		&i.Version,
 		&i.RequiresPython,
-		&i.RequiresHivemind,
+		&i.RequiresDevsper,
 		&i.ToolCount,
 		&i.UploadedBy,
 		&i.UploadedAt,
@@ -1069,7 +1069,7 @@ func (q *Queries) ListPackages(ctx context.Context, arg ListPackagesParams) ([]P
 }
 
 const listPendingVerifications = `-- name: ListPendingVerifications :many
-SELECT pv.id, pv.package_id, pv.version, pv.requires_python, pv.requires_hivemind, pv.tool_count, pv.uploaded_by, pv.uploaded_at, pv.published, pv.yanked, pv.yank_reason, pv.verification_status, pv.verification_report, pv.sigstore_bundle, p.name as package_name, p.namespace
+SELECT pv.id, pv.package_id, pv.version, pv.requires_python, pv.requires_devsper, pv.tool_count, pv.uploaded_by, pv.uploaded_at, pv.published, pv.yanked, pv.yank_reason, pv.verification_status, pv.verification_report, pv.sigstore_bundle, p.name as package_name, p.namespace
 FROM package_versions pv
 JOIN packages p ON p.id = pv.package_id
 WHERE pv.verification_status = 'pending'
@@ -1082,7 +1082,7 @@ type ListPendingVerificationsRow struct {
 	PackageID          uuid.UUID          `json:"package_id"`
 	Version            string             `json:"version"`
 	RequiresPython     pgtype.Text        `json:"requires_python"`
-	RequiresHivemind   pgtype.Text        `json:"requires_hivemind"`
+	RequiresDevsper   pgtype.Text        `json:"requires_devsper"`
 	ToolCount          pgtype.Int4        `json:"tool_count"`
 	UploadedBy         pgtype.UUID        `json:"uploaded_by"`
 	UploadedAt         pgtype.Timestamptz `json:"uploaded_at"`
@@ -1110,7 +1110,7 @@ func (q *Queries) ListPendingVerifications(ctx context.Context, limit int32) ([]
 			&i.PackageID,
 			&i.Version,
 			&i.RequiresPython,
-			&i.RequiresHivemind,
+			&i.RequiresDevsper,
 			&i.ToolCount,
 			&i.UploadedBy,
 			&i.UploadedAt,
@@ -1184,7 +1184,7 @@ func (q *Queries) ListUsersAdmin(ctx context.Context, arg ListUsersAdminParams) 
 }
 
 const listVersionsForPackage = `-- name: ListVersionsForPackage :many
-SELECT id, package_id, version, requires_python, requires_hivemind, tool_count, uploaded_by, uploaded_at, published, yanked, yank_reason, verification_status, verification_report, sigstore_bundle FROM package_versions WHERE package_id = $1 ORDER BY uploaded_at DESC
+SELECT id, package_id, version, requires_python, requires_devsper, tool_count, uploaded_by, uploaded_at, published, yanked, yank_reason, verification_status, verification_report, sigstore_bundle FROM package_versions WHERE package_id = $1 ORDER BY uploaded_at DESC
 `
 
 func (q *Queries) ListVersionsForPackage(ctx context.Context, packageID uuid.UUID) ([]PackageVersion, error) {
@@ -1201,7 +1201,7 @@ func (q *Queries) ListVersionsForPackage(ctx context.Context, packageID uuid.UUI
 			&i.PackageID,
 			&i.Version,
 			&i.RequiresPython,
-			&i.RequiresHivemind,
+			&i.RequiresDevsper,
 			&i.ToolCount,
 			&i.UploadedBy,
 			&i.UploadedAt,
@@ -1481,7 +1481,7 @@ func (q *Queries) UpdatePackage(ctx context.Context, arg UpdatePackageParams) (P
 const updatePackageVersionVerification = `-- name: UpdatePackageVersionVerification :one
 UPDATE package_versions SET verification_status = $2, verification_report = $3, published = $4, tool_count = $5, sigstore_bundle = $6
 WHERE id = $1
-RETURNING id, package_id, version, requires_python, requires_hivemind, tool_count, uploaded_by, uploaded_at, published, yanked, yank_reason, verification_status, verification_report, sigstore_bundle
+RETURNING id, package_id, version, requires_python, requires_devsper, tool_count, uploaded_by, uploaded_at, published, yanked, yank_reason, verification_status, verification_report, sigstore_bundle
 `
 
 type UpdatePackageVersionVerificationParams struct {
@@ -1508,7 +1508,7 @@ func (q *Queries) UpdatePackageVersionVerification(ctx context.Context, arg Upda
 		&i.PackageID,
 		&i.Version,
 		&i.RequiresPython,
-		&i.RequiresHivemind,
+		&i.RequiresDevsper,
 		&i.ToolCount,
 		&i.UploadedBy,
 		&i.UploadedAt,
@@ -1604,7 +1604,7 @@ func (q *Queries) UpdateUser(ctx context.Context, arg UpdateUserParams) (User, e
 
 const yankPackageVersion = `-- name: YankPackageVersion :one
 UPDATE package_versions SET yanked = true, yank_reason = $2 WHERE id = $1
-RETURNING id, package_id, version, requires_python, requires_hivemind, tool_count, uploaded_by, uploaded_at, published, yanked, yank_reason, verification_status, verification_report, sigstore_bundle
+RETURNING id, package_id, version, requires_python, requires_devsper, tool_count, uploaded_by, uploaded_at, published, yanked, yank_reason, verification_status, verification_report, sigstore_bundle
 `
 
 type YankPackageVersionParams struct {
@@ -1620,7 +1620,7 @@ func (q *Queries) YankPackageVersion(ctx context.Context, arg YankPackageVersion
 		&i.PackageID,
 		&i.Version,
 		&i.RequiresPython,
-		&i.RequiresHivemind,
+		&i.RequiresDevsper,
 		&i.ToolCount,
 		&i.UploadedBy,
 		&i.UploadedAt,

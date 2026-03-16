@@ -1,10 +1,10 @@
-# Caddyfile for hivemind services
-# - registry.hivemind.rithul.dev: API + Web (reverse proxy)
-# - hivemind.rithul.dev: Docs (static files)
+# Caddyfile for devsper services
+# - registry.devsper.com: API + Web (reverse proxy)
+# - docs.devsper.com: Docs (static files)
 
 # ── Registry ─────────────────────────────────────────────────────────────
 
-registry.hivemind.rithul.dev {
+registry.devsper.com {
     # Block external access to internal endpoints.
     handle /internal/* {
         respond "Not Found" 404
@@ -32,7 +32,7 @@ registry.hivemind.rithul.dev {
         X-Frame-Options DENY
         Referrer-Policy strict-origin-when-cross-origin
         Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
-        Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://registry.hivemind.rithul.dev"
+        Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.github.com https://registry.devsper.com"
         -Server
     }
 
@@ -44,7 +44,7 @@ registry.hivemind.rithul.dev {
 
 # ── Docs ─────────────────────────────────────────────────────────────────
 
-hivemind.rithul.dev {
+docs.devsper.com {
     root * /srv/docs
     file_server
 

@@ -4,16 +4,16 @@
 
 - AWS CLI configured (`aws configure` or `AWS_PROFILE`)
 - Terraform ≥ 1.5
-- A Route53 hosted zone for your domain (e.g. `hivemind.rithul.dev`)
-- An ACM certificate in **us-east-1** for `*.yourdomain` (e.g. `*.hivemind.rithul.dev`) — create in AWS Console if needed
+- A Route53 hosted zone for your domain (e.g. `devsper.com`)
+- An ACM certificate in **us-east-1** for `*.yourdomain` (e.g. `*.devsper.com`) — create in AWS Console if needed
 
 ## 1. Create Terraform state backend (one-time)
 
 ```bash
-aws s3 mb s3://hivemind-terraform-state --region us-east-1
-aws s3api put-bucket-versioning --bucket hivemind-terraform-state \
+aws s3 mb s3://devsper-terraform-state --region us-east-1
+aws s3api put-bucket-versioning --bucket devsper-terraform-state \
   --versioning-configuration Status=Enabled
-aws dynamodb create-table --table-name hivemind-terraform-locks \
+aws dynamodb create-table --table-name devsper-terraform-locks \
   --attribute-definitions AttributeName=LockID,AttributeType=S \
   --key-schema AttributeName=LockID,KeyType=HASH \
   --billing-mode PAY_PER_REQUEST \
@@ -43,10 +43,10 @@ terraform apply
 Note the outputs:
 
 - **ec2_elastic_ip** → use for GitHub secret `REGISTRY_EC2_HOST`
-- **ecr_registry_url** → base URL for API image (e.g. `123456789.dkr.ecr.us-east-1.amazonaws.com/hivemind-registry-api`)
+- **ecr_registry_url** → base URL for API image (e.g. `123456789.dkr.ecr.us-east-1.amazonaws.com/devsper-registry-api`)
 - **deploy_private_key** (sensitive) → use for GitHub secret `REGISTRY_DEPLOY_KEY` (only if `create_key_pair = true`)
 - **aws_account_id** → use for GitHub variable `AWS_ACCOUNT_ID`
-- **github_oidc_role_arn** → used in workflows (role name: `hivemind-registry-deploy`)
+- **github_oidc_role_arn** → used in workflows (role name: `devsper-deploy`)
 
 ## 4. GitHub configuration
 
@@ -68,29 +68,29 @@ ssh -i /path/to/terraform-key.pem ec2-user@<ec2_elastic_ip>
 Create the env file and ensure the app can start:
 
 ```bash
-sudo mkdir -p /opt/hivemind-registry
-sudo touch /opt/hivemind-registry/.env
-sudo chown ec2-user:ec2-user /opt/hivemind-registry/.env
+sudo mkdir -p /opt/devsper-registry
+sudo touch /opt/devsper-registry/.env
+sudo chown ec2-user:ec2-user /opt/devsper-registry/.env
 ```
 
-Edit `/opt/hivemind-registry/.env` with at least:
+Edit `/opt/devsper-registry/.env` with at least:
 
 - `POSTGRES_PASSWORD` — used by Postgres and API
-- `DATABASE_URL` — e.g. `postgres://hivemind:<POSTGRES_PASSWORD>@postgres:5432/hivemind_registry?sslmode=disable`
-- `API_IMAGE` — full ECR image:tag, e.g. `123456789.dkr.ecr.us-east-1.amazonaws.com/hivemind-registry-api:latest`
+- `DATABASE_URL` — e.g. `postgres://devsper:<POSTGRES_PASSWORD>@postgres:5432/devsper_registry?sslmode=disable`
+- `API_IMAGE` — full ECR image:tag, e.g. `123456789.dkr.ecr.us-east-1.amazonaws.com/devsper-registry-api:latest`
 - `S3_BUCKET`, `S3_REGION`, `JWT_SECRET`, and any other vars your API needs
 
 Create the `web_dist` directory so Caddy can serve the frontend (GitHub Actions will rsync into it):
 
 ```bash
-sudo mkdir -p /opt/hivemind-registry/web_dist
-sudo chown -R ec2-user:ec2-user /opt/hivemind-registry
+sudo mkdir -p /opt/devsper-registry/web_dist
+sudo chown -R ec2-user:ec2-user /opt/devsper-registry
 ```
 
 Start the stack (or let user-data do it; if you need to start manually):
 
 ```bash
-cd /opt/hivemind-registry
+cd /opt/devsper-registry
 docker compose up -d
 ```
 
@@ -98,9 +98,9 @@ docker compose up -d
 
 - Push to `main` (or run the **Registry API** and **Registry Web** workflows manually).  
 - API workflow: builds image, pushes to ECR, SSHs to EC2 and runs `docker compose pull api && docker compose up -d --no-deps api`.  
-- Web workflow: builds the React app, rsyncs to `EC2:/opt/hivemind-registry/web_dist/`, then runs `docker exec ... caddy reload`.
+- Web workflow: builds the React app, rsyncs to `EC2:/opt/devsper-registry/web_dist/`, then runs `docker exec ... caddy reload`.
 
-If the Caddy container name differs (e.g. different project name), update the `docker exec` in `.github/workflows/registry-web.yml` (e.g. `hivemind-registry-caddy-1` → your container name).
+If the Caddy container name differs (e.g. different project name), update the `docker exec` in `.github/workflows/registry-web.yml` (e.g. `devsper-registry-caddy-1` → your container name).
 
 ## 7. SES
 

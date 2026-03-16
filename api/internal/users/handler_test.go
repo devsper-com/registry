@@ -12,9 +12,9 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/google/uuid"
 
-	"github.com/rithul/hivemind/registry/api/internal/auth"
-	"github.com/rithul/hivemind/registry/api/internal/testutil"
-	"github.com/rithul/hivemind/registry/api/internal/users"
+	"github.com/devsper-com/registry/api/internal/auth"
+	"github.com/devsper-com/registry/api/internal/testutil"
+	"github.com/devsper-com/registry/api/internal/users"
 )
 
 // addAuthContext injects auth context values matching what RequireAuth sets.

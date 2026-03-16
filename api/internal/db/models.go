@@ -121,7 +121,7 @@ type PackageVersion struct {
 	PackageID          uuid.UUID          `json:"package_id"`
 	Version            string             `json:"version"`
 	RequiresPython     pgtype.Text        `json:"requires_python"`
-	RequiresHivemind   pgtype.Text        `json:"requires_hivemind"`
+	RequiresDevsper   pgtype.Text        `json:"requires_devsper"`
 	ToolCount          pgtype.Int4        `json:"tool_count"`
 	UploadedBy         pgtype.UUID        `json:"uploaded_by"`
 	UploadedAt         pgtype.Timestamptz `json:"uploaded_at"`
