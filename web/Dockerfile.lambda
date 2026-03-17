@@ -2,8 +2,8 @@
 # Uses AWS Lambda Web Adapter to proxy Lambda invoke → HTTP on :3000
 # Non-AWS base images work because the adapter bundles the Runtime Interface Client.
 
-# Stage 1: install deps + build React SPA
-FROM oven/bun:1-alpine AS builder
+# Stage 1: install deps + build React SPA (explicit amd64 for GitHub Actions runner / Lambda)
+FROM --platform=linux/amd64 oven/bun:1-alpine AS builder
 WORKDIR /app
 COPY package.json bun.lock* ./
 RUN bun install --frozen-lockfile
@@ -17,13 +17,13 @@ ENV VITE_GOOGLE_CLIENT_ID=$VITE_GOOGLE_CLIENT_ID
 RUN bun run build
 
 # Stage 2: production deps only
-FROM oven/bun:1-alpine AS deps
+FROM --platform=linux/amd64 oven/bun:1-alpine AS deps
 WORKDIR /app
 COPY package.json bun.lock* ./
 RUN bun install --frozen-lockfile --production
 
 # Stage 3: Lambda runtime with web adapter
-FROM oven/bun:1-debian
+FROM --platform=linux/amd64 oven/bun:1-debian
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates && rm -rf /var/lib/apt/lists/*
 
 # Install Lambda Web Adapter (includes Runtime Interface Client for non-AWS base images)
