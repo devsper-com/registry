@@ -22,9 +22,13 @@ Triggers on push to `main` touching `registry/**`, or manual dispatch.
 
 Manual dispatch supports a `force` boolean to skip tests.
 
+### `deploy-web.yml` — Deploy Web to Lambda
+
+Triggers on push to `main` touching `web/**`, or manual dispatch. Builds the web image for Lambda, pushes to ECR, updates the Lambda function, and invalidates the registry CloudFront distribution. Uses the same OIDC role as the main registry deploy; requires `AWS_ACCOUNT_ID` repo variable.
+
 ### Docs deploy
 
-Docs site and its deploy live in the **docs** repo. Push to `main` there builds Docusaurus and rsyncs `build/` to EC2 `/opt/devsper-docs/` (see `docs/.github/workflows/deploy-ec2.yml`). Versioning (if used) is also handled in the docs repo.
+Docs site and its deploy live in the **docs** repo. Push to `main` there builds Docusaurus and syncs `build/` to S3 + CloudFront (see `docs/.github/workflows/deploy.yml`). No EC2.
 
 ## GitHub Configuration
 
