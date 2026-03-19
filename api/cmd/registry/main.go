@@ -82,7 +82,7 @@ func main() {
 		cfg.FrontendURL,
 		cfg.HomepageURL,
 		"https://www.devsper.com",
-		"https://devsper.com"
+		"https://devsper.com",
 	}, cfg.CORSAllowedOrigins...)
 	r.Use(middleware.CORSWithAllowlist(corsOrigins...))
 
