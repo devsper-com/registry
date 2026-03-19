@@ -77,7 +77,14 @@ func main() {
 	r.Use(chimiddleware.RealIP)
 	r.Use(middleware.Logger(log.Logger))
 	r.Use(middleware.Recover)
-	r.Use(middleware.CORSWithAllowlist(cfg.BaseURL, cfg.FrontendURL))
+	corsOrigins := append([]string{
+		cfg.BaseURL,
+		cfg.FrontendURL,
+		cfg.HomepageURL,
+		"https://www.devsper.com",
+		"https://devsper.com"
+	}, cfg.CORSAllowedOrigins...)
+	r.Use(middleware.CORSWithAllowlist(corsOrigins...))
 
 	// Public
 	r.Get("/health", health.Liveness)

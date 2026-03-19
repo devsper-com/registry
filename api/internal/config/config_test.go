@@ -128,7 +128,7 @@ func clearConfigEnv(t *testing.T) {
 		"GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET",
 		"SES_REGION", "SES_FROM_ADDRESS", "SES_REPLY_TO",
 		"SMTP_HOST", "SMTP_PORT", "SMTP_FROM", "SMTP_USER", "SMTP_PASSWORD",
-		"BASE_URL", "FRONTEND_URL", "PORT",
+		"BASE_URL", "FRONTEND_URL", "HOMEPAGE_URL", "CORS_ALLOWED_ORIGINS", "PORT",
 		"ECR_REGISTRY", "ADMIN_SECRET", "INTERNAL_SECRET",
 		"RATE_LIMIT_RPS", "MAX_UPLOAD_SIZE_MB", "VERIFICATION_WORKERS",
 		"ENV",
@@ -188,6 +188,8 @@ func TestLoad_CustomEnv(t *testing.T) {
 	t.Setenv("JWT_SECRET", "custom-secret")
 	t.Setenv("PORT", "9090")
 	t.Setenv("BASE_URL", "https://custom.example.com")
+	t.Setenv("HOMEPAGE_URL", "https://home.example.com")
+	t.Setenv("CORS_ALLOWED_ORIGINS", "https://preview-1.example.com, https://preview-2.example.com")
 	t.Setenv("MAX_UPLOAD_SIZE_MB", "500")
 	t.Setenv("RATE_LIMIT_RPS", "50")
 	t.Setenv("ENV", "production")
@@ -213,6 +215,18 @@ func TestLoad_CustomEnv(t *testing.T) {
 	}
 	if cfg.BaseURL != "https://custom.example.com" {
 		t.Errorf("BaseURL = %q, want custom value", cfg.BaseURL)
+	}
+	if cfg.HomepageURL != "https://home.example.com" {
+		t.Errorf("HomepageURL = %q, want custom value", cfg.HomepageURL)
+	}
+	if len(cfg.CORSAllowedOrigins) != 2 {
+		t.Fatalf("CORSAllowedOrigins len = %d, want 2", len(cfg.CORSAllowedOrigins))
+	}
+	if cfg.CORSAllowedOrigins[0] != "https://preview-1.example.com" {
+		t.Errorf("CORSAllowedOrigins[0] = %q, want first preview origin", cfg.CORSAllowedOrigins[0])
+	}
+	if cfg.CORSAllowedOrigins[1] != "https://preview-2.example.com" {
+		t.Errorf("CORSAllowedOrigins[1] = %q, want second preview origin", cfg.CORSAllowedOrigins[1])
 	}
 	if cfg.MaxUploadSizeMB != 500 {
 		t.Errorf("MaxUploadSizeMB = %d, want 500", cfg.MaxUploadSizeMB)

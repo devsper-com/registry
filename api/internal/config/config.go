@@ -5,6 +5,7 @@ import (
 	"net/url"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -51,6 +52,10 @@ type Config struct {
 	// App
 	BaseURL     string // API public URL (for OAuth redirect_uri)
 	FrontendURL string // Where to redirect after OAuth login (defaults to BaseURL if empty)
+	HomepageURL string // Homepage URL for CORS and other links
+	// Additional CORS origins (comma-separated env var CORS_ALLOWED_ORIGINS).
+	// Useful for preview/staging homepage deployments.
+	CORSAllowedOrigins []string
 	Port        string
 
 	// ECR (Docker images)
@@ -101,6 +106,8 @@ func Load() (*Config, error) {
 		SMTPPassword:        getEnv("SMTP_PASSWORD", ""),
 		BaseURL:             getEnv("BASE_URL", "https://registry.devsper.com"),
 		FrontendURL:         getEnv("FRONTEND_URL", ""), // if empty, redirects use BaseURL
+		HomepageURL:         getEnv("HOMEPAGE_URL", "https://devsper.com"), // default homepage
+		CORSAllowedOrigins:  parseCSV(getEnv("CORS_ALLOWED_ORIGINS", "")),
 		Port:                getEnv("PORT", "8080"),
 		ECRRegistry:         getEnv("ECR_REGISTRY", ""),
 		AdminSecret:         getEnv("ADMIN_SECRET", ""),
@@ -181,4 +188,20 @@ func parseDuration(s string, def time.Duration) time.Duration {
 		return def
 	}
 	return d
+}
+
+func parseCSV(s string) []string {
+	if s == "" {
+		return nil
+	}
+	parts := strings.Split(s, ",")
+	out := make([]string, 0, len(parts))
+	for _, p := range parts {
+		v := strings.TrimSpace(p)
+		if v == "" {
+			continue
+		}
+		out = append(out, v)
+	}
+	return out
 }

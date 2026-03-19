@@ -47,7 +47,7 @@ The registry supports three authentication methods:
 
 ### CORS
 
-CORS is restricted to an explicit origin allowlist derived from `BASE_URL` and `FRONTEND_URL` configuration. Credentials are only sent for matching origins.
+CORS is restricted to an explicit origin allowlist derived from `BASE_URL`, `FRONTEND_URL`, `HOMEPAGE_URL`, and optional `CORS_ALLOWED_ORIGINS` configuration. Credentials are only sent for matching origins.
 
 ### Rate Limiting
 
