@@ -22,11 +22,14 @@ func TestCORSWithAllowlist_AllowedOrigin(t *testing.T) {
 	rr := httptest.NewRecorder()
 	handler.ServeHTTP(rr, req)
 
-	if rr.Code != http.StatusNoContent {
-		t.Errorf("expected 204 for OPTIONS, got %d", rr.Code)
+	if rr.Code != http.StatusOK {
+		t.Errorf("expected 200 for OPTIONS, got %d", rr.Code)
 	}
 	if got := rr.Header().Get("Access-Control-Allow-Origin"); got != "http://localhost:3000" {
 		t.Errorf("Allow-Origin = %q, want %q", got, "http://localhost:3000")
+	}
+	if got := rr.Header().Get("Vary"); got != "Origin" {
+		t.Errorf("Vary = %q, want %q", got, "Origin")
 	}
 	if got := rr.Header().Get("Access-Control-Allow-Credentials"); got != "true" {
 		t.Errorf("Allow-Credentials = %q, want %q", got, "true")

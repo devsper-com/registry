@@ -147,6 +147,9 @@ jobs:
           context: api
           platforms: linux/arm64
           push: true
+          # OCI index + attestation manifests break Lambda (InvalidImage / inactive function).
+          provenance: false
+          sbom: false
           tags: |
             ${{ steps.ecr-login.outputs.registry }}/devsper-registry-api:latest
             ${{ steps.ecr-login.outputs.registry }}/devsper-registry-api:${{ github.sha }}
@@ -160,6 +163,8 @@ jobs:
           context: web
           platforms: linux/arm64
           push: true
+          provenance: false
+          sbom: false
           tags: |
             ${{ steps.ecr-login.outputs.registry }}/devsper-registry-web:latest
             ${{ steps.ecr-login.outputs.registry }}/devsper-registry-web:${{ github.sha }}

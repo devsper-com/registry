@@ -27,12 +27,16 @@ func CORSWithAllowlist(allowedOrigins ...string) func(next http.Handler) http.Ha
 			if origin != "" && allowed[origin] {
 				w.Header().Set("Access-Control-Allow-Origin", origin)
 				w.Header().Set("Access-Control-Allow-Credentials", "true")
+				// Required when reflecting Origin so caches (e.g. CloudFront) do not serve one
+				// origin’s CORS headers to another.
+				w.Header().Add("Vary", "Origin")
 			}
 			w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
 			w.Header().Set("Access-Control-Allow-Headers", "Authorization, Content-Type, X-Requested-With, Accept, X-API-Key")
 			w.Header().Set("Access-Control-Max-Age", "86400")
 			if r.Method == http.MethodOptions {
-				w.WriteHeader(http.StatusNoContent)
+				// 200 is more widely treated as a successful preflight than 204 by browsers and proxies.
+				w.WriteHeader(http.StatusOK)
 				return
 			}
 			next.ServeHTTP(w, r)
