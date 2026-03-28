@@ -1,8 +1,12 @@
-# Devsper Registry
+# Devsper Registry (archived)
+
+**Archived — see [ARCHIVE.md](./ARCHIVE.md).** The open-source CLI no longer ships `devsper reg`; plugins are distributed via PyPI (or other standard Python indexes) and Devsper Cloud is separate.
+
+---
 
 Python package registry with API (Go) + Web UI (React/TypeScript) + Better Auth.
 
-Live at: [registry.devsper.com](https://registry.devsper.com)
+Previously live at: registry.devsper.com (may be offline or redirected).
 
 ## Architecture
 
